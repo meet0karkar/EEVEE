@@ -1,0 +1,252 @@
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { CircularProgress, capitalize } from '@mui/material';
+import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse';
+import IconButton from '@mui/material/IconButton';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import { useState } from 'react';
+import NorthIcon from '@mui/icons-material/North';
+import SouthIcon from '@mui/icons-material/South';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
+import Image from 'next/image';
+
+const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transactionData }) => {
+    const [open, setOpen] = useState(false);
+
+    const column = [
+        { header: "Transaction", accessor: "transaction", align: "center", sortable: true },
+        { header: "Amount", accessor: "amount", align: "center" },
+        { header: "Payment Type", accessor: "paymentType", align: "left" },
+        { header: "transactionId", accessor: "transactionId", align: "left", sortable: true },
+        { header: "Date", accessor: "date", align: "center" },
+    ]
+
+    return (
+        <>
+            <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+
+                <TableCell align="left">{new Intl.NumberFormat("en-IN", {
+                    style: "currency",
+                    currency: "INR",
+                    minimumFractionDigits: 2,
+                }).format(row.amount)}</TableCell>
+                <TableCell align="left">{row.startDate}</TableCell>
+                <TableCell align="left">{row.endDate}</TableCell>
+                <TableCell align="left">{new Intl.NumberFormat("en-IN", {
+                    style: "currency",
+                    currency: "INR",
+                    minimumFractionDigits: 2,
+                }).format(row.totalAmountPayable)}</TableCell>
+                <TableCell align="left">{row.action}</TableCell>
+                <TableCell align="left">
+                    <IconButton
+                        aria-label="expand row"
+                        size="small"
+                        onClick={() => {
+                            handleTransitionList(row.id)
+                            setOpen(!open)
+                        }}
+                    >
+                        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                    </IconButton>
+                </TableCell>
+                {/* <TableCell align="center"><button
+                    className={`border-2 py-1 p-2 rounded-lg w-[95%] 
+                            ${row?.bookingStatus === "pending" && "border-[#E4A11B] text-[#E4A11B]"} 
+                            ${row?.bookingStatus === "approved" && "border-[#14A44D] text-[#14A44D]"} 
+                            ${row?.bookingStatus === "canceled" && "border-[#d32f2f] text-[#d32f2f]"}
+                            ${(row?.bookingStatus === "active" || row?.bookingStatus === "completed") && "border-[#14A44D] bg-[#14A44D] text-[--white-color]"}`} >
+                    {row?.bookingStatus.toUpperCase()}
+                </button ></TableCell> */}
+
+            </TableRow>
+            <TableRow >
+                {/* {isLoading1 ? <div className='my-10 flex justify-center items-center'><CircularProgress color="secondary" /></div> : */}
+                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12} >
+                    <Collapse in={open} timeout="auto" style={{ width: "100%" }} colSpan={12}>
+                        <Box sx={{ margin: 2 }}>
+                            <div className="h-[90%] w-[100%] overflow-y-auto px-2 md:px-4 lg:px-10 space-y-6 !mt-6">
+                                <div className='flex justify-end gap-2 items-center'>
+                                    <button className='border border-[--secondary] font-medium tracking-wide px-6 py-2  rounded-lg '><span className='block    '>Withdraw Now</span></button>
+                                    <button className='px-6 py-2 rounded-lg border border-[--secondary]   bg-[--secondary]  tracking-wide text-white font-semibold ' onClick={() => {
+                                        console.log('data')
+                                        handlePayment(row?.id, row?.amount)
+                                    }}><span className=' '>Invest More</span></button>
+                                </div>
+                                <div className=" border-2  px-3 py-4 rounded-lg">
+                                    <div className="px-2 py-2">
+                                        <p className='text-normal font-semibold tracking-wide mb-6'>Transaction History</p>
+                                        <TableHead className=''>
+                                            <TableRow className=''>
+                                                {column.map((column, index) => (
+                                                    <TableCell
+                                                        key={index}
+                                                        align={column.align}
+                                                        className="!text-[0.875rem] lg:!text-[14px] !tracking-wide !font-bold !bg-[--theme-color] !text-[--white-color] ">
+
+                                                        <h1 className='!w-max'>{column.header}</h1>
+
+                                                    </TableCell>
+                                                ))}
+                                            </TableRow>
+                                        </TableHead>
+                                        {transactionData.length>0 ? transactionData.map((item,index) => {
+                                            return (
+                                                <TableBody className='w-full'  key={index}>
+                                                    <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+                                                        <TableCell align="left">Buy</TableCell>
+                                                        <TableCell align="left">{new Intl.NumberFormat("en-IN", {
+                                                            style: "currency",
+                                                            currency: "INR",
+                                                            minimumFractionDigits: 2,
+                                                        }).format(item.amount)}</TableCell>
+                                                        <TableCell align="left">{item.paymentMethod}</TableCell>
+                                                        <TableCell align="left">{item.transactionId}</TableCell>
+                                                        <TableCell align="left">{new Date(item?.transactionDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</TableCell>
+                                                    </TableRow>
+                                                </TableBody>
+                                            )
+                                        }):<p className='w-2/5 text-center my-4'>No results</p>}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </Box>
+                    </Collapse>
+                </TableCell>
+            </TableRow>
+        </>
+    );
+}
+
+const CollapsibleDataTable = ({ table, isLoading, handlePayment, handleTransitionList, isLoading1, transactionData }) => {
+    const { columns, rows } = table
+    const [hoveredColumn, setHoveredColumn] = useState(null);
+    const [sortData, setSortData] = useState({ column: null, direction: 'asc' });
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const sortArr = [
+        {
+            icon: <SwapVertIcon fontSize="small" className="text-[--white-color]" />
+        },
+        {
+            type: "asc",
+            icon: <NorthIcon fontSize="small" className="text-[--white-color]" />
+        },
+        {
+            type: "dsc",
+            icon: <SouthIcon fontSize="small" className="text-[--white-color]" />
+        },
+    ]
+
+    const sortDataHandler = (columnAccessor) => {
+        const nextIndex = (currentIndex + 1) % sortArr.length;
+        setCurrentIndex(nextIndex)
+        if (currentIndex === sortArr.length - 1) {
+            setSortData({ column: null, direction: 'asc' });
+            setCurrentIndex(0)
+        } else {
+            setSortData((prevSortData) => ({
+                column: columnAccessor,
+                direction: prevSortData.column === columnAccessor && prevSortData.direction === 'asc' ? 'desc' : 'asc',
+            }));
+        }
+    }
+
+    const sortedRows = [...rows].sort((a, b) => {
+        if (sortData.column) {
+            if (sortData.column === 'amount') {
+                const rentA = parseFloat(a[sortData.column].replace(/[^\d.-]/g, ''));
+                const rentB = parseFloat(b[sortData.column].replace(/[^\d.-]/g, ''));
+                return sortData.direction === 'asc' ? rentA - rentB : rentB - rentA;
+            } else {
+                const comparison = a[sortData.column].localeCompare(b[sortData.column]);
+                return sortData.direction === 'asc' ? comparison : -comparison;
+            }
+        }
+        return 0;
+    });
+
+    return (
+        <>
+            {isLoading ? <div className='my-40 flex justify-center items-center'><CircularProgress color="secondary" /></div> :
+                <TableContainer component={Paper} className='h-[70vh] w-[100%] !rounded-lg !overflow-x-auto relative !rounded-b-lg !rounded-t-none'>
+
+                    <Table stickyHeader aria-label="sticky table">
+                        <TableHead>
+                            <TableRow>
+                                {columns.map((column, index) => (
+                                    <TableCell
+                                        key={index}
+                                        align={column.align}
+                                        className="!text-[0.875rem] lg:!text-[14px] !tracking-wide !font-bold !bg-[--theme-color] !text-[--white-color] "
+                                        onMouseEnter={() => {
+                                            if (column?.sortable) {
+                                                setHoveredColumn(column.accessor)
+                                            }
+                                        }}
+                                        onMouseLeave={() => {
+                                            if (column?.sortable) {
+                                                if (currentIndex !== 0) {
+                                                    setHoveredColumn(column.accessor)
+                                                } else {
+                                                    setHoveredColumn(null);
+                                                }
+                                            }
+
+                                        }}>
+                                        {column?.sortable
+                                            ?
+                                            <div className="flex items-center justify-center space-x-2 !w-max">
+                                                <span>{column.header}</span>
+                                                <span className={'!w-[2px]'}>
+                                                    {hoveredColumn === column.accessor && (
+                                                        <span className={` cursor-pointer text-[--theme-color] text-2xl flex justify-center items-center`}
+                                                            onClick={() => sortDataHandler(column.accessor)}
+                                                        >
+                                                            {sortArr[currentIndex].icon}
+                                                        </span>
+                                                    )}
+                                                </span>
+                                            </div>
+                                            :
+                                            <h1 className='!w-max'>{column.header}</h1>
+                                        }
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        </TableHead>
+                        {rows.length > 0
+                            ?
+                            (<TableBody>
+                                {sortedRows.map((val, index) => (
+                                    <Row key={index} row={val} handlePayment={handlePayment} handleTransitionList={handleTransitionList} isLoading1={isLoading1} transactionData={transactionData} />
+                                ))}
+                            </TableBody>)
+
+                            : <TableBody TableBody style={{ display: "flex", height: "100vh", justifyContent: "center", alignItems: "center", position: "absolute", top: 0, bottom: 0, left: 0, right: 0 }}>
+                                <TableRow >
+                                    <><div className='w-full  bg-white p-8 flex items-center justify-center flex-col'>
+                                        <Image src='/sip.svg' alt="sip" height="80" width="80" />
+                                        <p className="mt-4 text-gray-400 tracking-wider text-sm text-center">
+                                            No investment plans available at the moment. Please add a plan to get started.
+                                        </p>
+                                    </div>
+                                    </>
+                                </TableRow>
+                            </TableBody>
+                        }
+                    </Table >
+                </TableContainer >
+            }</>
+    );
+}
+
+export default CollapsibleDataTable
