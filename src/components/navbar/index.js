@@ -22,7 +22,7 @@ const Index = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const fullName = loginState.data.user.fullName || 'S D';
+  const fullName = loginState?.data?.user?.fullName || 'S D';
 
   console.log('fullName', fullName)
   const initials = fullName
