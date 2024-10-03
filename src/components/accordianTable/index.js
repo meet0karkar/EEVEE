@@ -21,10 +21,10 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
     const [open, setOpen] = useState(false);
 
     const column = [
-        { header: "Transaction", accessor: "transaction", align: "center", sortable: true },
+        { header: "Transaction", accessor: "transaction", align: "left", },
         { header: "Amount", accessor: "amount", align: "center" },
-        { header: "Payment Type", accessor: "paymentType", align: "left" },
-        { header: "transactionId", accessor: "transactionId", align: "left", sortable: true },
+        { header: "Payment Type", accessor: "paymentType", align: "center" },
+        { header: "Transaction Id", accessor: "transactionId", align: "center"},
         { header: "Date", accessor: "date", align: "center" },
     ]
 
@@ -37,15 +37,15 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
                     currency: "INR",
                     minimumFractionDigits: 2,
                 }).format(row.amount)}</TableCell>
-                <TableCell align="left">{row.startDate}</TableCell>
-                <TableCell align="left">{row.endDate}</TableCell>
-                <TableCell align="left">{new Intl.NumberFormat("en-IN", {
+                <TableCell align="center">{row.startDate}</TableCell>
+                <TableCell align="center">{row.endDate}</TableCell>
+                <TableCell align="center">{new Intl.NumberFormat("en-IN", {
                     style: "currency",
                     currency: "INR",
                     minimumFractionDigits: 2,
                 }).format(row.totalAmountPayable)}</TableCell>
-                <TableCell align="left">{row.action}</TableCell>
-                <TableCell align="left">
+                
+                <TableCell align="center " className='w-5' >
                     <IconButton
                         aria-label="expand row"
                         size="small"
@@ -68,31 +68,28 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
 
             </TableRow>
             <TableRow >
-                {/* {isLoading1 ? <div className='my-10 flex justify-center items-center'><CircularProgress color="secondary" /></div> : */}
                  <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12} >
                     <Collapse in={open} timeout="auto" style={{ width: "100%" }} colSpan={12}>
                         <Box sx={{ margin: 2 }}>
-                            <div className="h-[90%] w-[100%] overflow-y-auto px-2 md:px-4 lg:px-10 space-y-6 !mt-6">
+                            <div className="h-[90%] w-[100%]  px-2 md:px-4 lg:px-10 space-y-6 !mt-6">
                                 <div className='flex justify-end gap-2 items-center'>
-                                    <button className='border border-[--secondary] font-medium tracking-wide px-6 py-2  rounded-lg '><span className='block    '>Withdraw Now</span></button>
+                                   
                                     <button className='px-6 py-2 rounded-lg border border-[--secondary]   bg-[--secondary]  tracking-wide text-white font-semibold ' onClick={() => {
-                                        console.log('data')
+
                                         handlePayment(row?.id, row?.amount)
                                     }}><span className=' '>Invest More</span></button>
                                 </div>
                                 <div className=" border-2  px-3 py-4 rounded-lg">
-                                    <div className="px-2 py-2">
-                                        <p className='text-normal font-semibold tracking-wide mb-6'>Transaction History</p>
-                                        <TableHead className=''>
+                                    <div className="px-2 py-2 !w-full">
+                                        <p className=' text-normal font-semibold tracking-wide mb-6'>Transaction History</p>
+                                        <TableHead className=' !w-full'>
                                             <TableRow className=''>
                                                 {column.map((column, index) => (
                                                     <TableCell
                                                         key={index}
                                                         align={column.align}
-                                                        className="!text-[0.875rem] lg:!text-[14px] !tracking-wide !font-bold !bg-[--theme-color] !text-[--white-color] ">
-
-                                                        <h1 className='!w-max'>{column.header}</h1>
-
+                                                        className="!text-[0.875rem] lg:!text-[14px] !tracking-wide !font-bold !bg-[--theme-color] !text-[--white-color] w-full  ">
+                                                        <h1 className='whitespace-nowrap'>{column.header}</h1>
                                                     </TableCell>
                                                 ))}
                                             </TableRow>
@@ -100,20 +97,20 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
                                         {transactionData.length>0 ? transactionData.map((item,index) => {
                                             return (
                                                 <TableBody className='w-full'  key={index}>
-                                                    <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-                                                        <TableCell align="left">Buy</TableCell>
-                                                        <TableCell align="left">{new Intl.NumberFormat("en-IN", {
+                                                    <TableRow sx={{ '& > *': { borderBottom: 'unset' } }} className='w-full' >
+                                                        <TableCell align="left" className='whitespace-nowrap' >Buy</TableCell>
+                                                        <TableCell align="center" className='w-full whitespace-nowrap' >{new Intl.NumberFormat("en-IN", {
                                                             style: "currency",
                                                             currency: "INR",
                                                             minimumFractionDigits: 2,
                                                         }).format(item.amount)}</TableCell>
-                                                        <TableCell align="left">{item.paymentMethod}</TableCell>
-                                                        <TableCell align="left">{item.transactionId}</TableCell>
-                                                        <TableCell align="left">{new Date(item?.transactionDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</TableCell>
+                                                        <TableCell align="center" className='w-full whitespace-nowrap' >{item.paymentMethod}</TableCell>
+                                                        <TableCell align="center" className='w-full whitespace-nowrap' >{item.transactionId}</TableCell>
+                                                        <TableCell align="center" className='w-full whitespace-nowrap' >{new Date(item?.transactionDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</TableCell>
                                                     </TableRow>
                                                 </TableBody>
                                             )
-                                        }):<p className='w-2/5 text-center my-4'>No results</p>}
+                                        }):<p className='w-full text-center my-4'>No results</p>}
 
                                     </div>
                                 </div>
@@ -177,7 +174,7 @@ const CollapsibleDataTable = ({ table, isLoading, handlePayment, handleTransitio
     return (
         <>
             {isLoading ? <div className='my-40 flex justify-center items-center'><CircularProgress color="secondary" /></div> :
-                <TableContainer component={Paper} className='h-[70vh] w-[100%] !rounded-lg !overflow-x-auto relative !rounded-b-lg !rounded-t-none'>
+                <TableContainer component={Paper} className=' w-[100%] !rounded-lg  relative !rounded-b-lg !rounded-t-none'>
 
                     <Table stickyHeader aria-label="sticky table">
                         <TableHead>
@@ -186,38 +183,11 @@ const CollapsibleDataTable = ({ table, isLoading, handlePayment, handleTransitio
                                     <TableCell
                                         key={index}
                                         align={column.align}
-                                        className="!text-[0.875rem] lg:!text-[14px] !tracking-wide !font-bold !bg-[--theme-color] !text-[--white-color] "
-                                        onMouseEnter={() => {
-                                            if (column?.sortable) {
-                                                setHoveredColumn(column.accessor)
-                                            }
-                                        }}
-                                        onMouseLeave={() => {
-                                            if (column?.sortable) {
-                                                if (currentIndex !== 0) {
-                                                    setHoveredColumn(column.accessor)
-                                                } else {
-                                                    setHoveredColumn(null);
-                                                }
-                                            }
-
-                                        }}>
-                                        {column?.sortable
-                                            ?
-                                            <div className="flex items-center justify-center space-x-2 !w-max">
-                                                <span>{column.header}</span>
-                                                <span className={'!w-[2px]'}>
-                                                    {hoveredColumn === column.accessor && (
-                                                        <span className={` cursor-pointer text-[--theme-color] text-2xl flex justify-center items-center`}
-                                                            onClick={() => sortDataHandler(column.accessor)}
-                                                        >
-                                                            {sortArr[currentIndex].icon}
-                                                        </span>
-                                                    )}
-                                                </span>
-                                            </div>
-                                            :
-                                            <h1 className='!w-max'>{column.header}</h1>
+                                        className="!text-[0.875rem] lg:!text-[14px] !tracking-wide !font-bold !bg-[#27272780] !text-[--white] "
+                                      
+                                        >
+                                        {
+                                            column.header
                                         }
                                     </TableCell>
                                 ))}

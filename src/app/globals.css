@@ -2,9 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
 
 .poppins-thin {
   font-family: "Poppins", sans-serif;
@@ -114,15 +113,16 @@
   font-style: italic;
 }
 
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary:#FFD700;
-  --secondary:#A020F0;
-  --gray:#71717a;
-  --black:#18181b;
-  --black_text:#000000D9
+  --primary: #ffd700;
+  --secondary: #a020f0;
+  --gray: #71717a;
+  --black: #18181b;
+  --black_text: #000000d9;
+  --white: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.6);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -145,7 +145,7 @@ body {
 }
 
 .custom-phone-input .PhoneInputInput {
-  border: 2px solid #4CAF50 !important;
+  border: 2px solid #4caf50 !important;
   padding: 10px !important;
   background-color: red !important;
   border-radius: 5px !important;
@@ -167,25 +167,25 @@ body {
 
 .otpSection {
   input {
-      background: transparent !important;
-      border: none !important;
-      border-bottom: 1px solid rgb(209, 213, 219) !important;
-      padding: 0 !important;
-      color: black !important;
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid rgb(209, 213, 219) !important;
+    padding: 0 !important;
+    color: black !important;
 
-      &:hover {
-          border: none;
-      }
+    &:hover {
+      border: none;
+    }
 
-      &:focus {
-          border: none;
-          box-shadow: none;
-          outline: none !important;
-      }
+    &:focus {
+      border: none;
+      box-shadow: none;
+      outline: none !important;
+    }
 
-      &::-webkit-input-placeholder {
-          color: black;
-      }
+    &::-webkit-input-placeholder {
+      color: black;
+    }
   }
 }
 
@@ -206,10 +206,11 @@ body {
 h2 {
   text-align: center;
   margin-bottom: 20px;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 }
 
-.input-group, .dropdown-group {
+.input-group,
+.dropdown-group {
   margin-bottom: 15px;
 }
 
@@ -219,7 +220,8 @@ label {
   font-weight: bold;
 }
 
-.fund-input, .fund-select {
+.fund-input,
+.fund-select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -248,4 +250,23 @@ label {
 
 .submit-button:hover {
   background-color: #218838;
+}
+
+
+.navMenuItems li::before {
+  content: "";
+  width: 100%;
+  height: 4px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: var(--theme-color);
+  transition: 0.5s transform ease;
+  transform: scale3d(0, 1, 1);
+  transform-origin: 100% 50%;
+}
+
+.navMenuItems li:hover::before {
+  transform: scale3d(1, 1, 1);
+  transform-origin: 0 50%;
 }

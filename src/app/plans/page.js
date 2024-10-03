@@ -15,6 +15,7 @@ import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useSelector } from 'react-redux'
+import Footer from '../../components/footer'
 
 
 const amountSchema = Yup.object().shape({
@@ -70,11 +71,10 @@ const Page = () => {
             console.log('amountSchema Values:', data.data);
             if (data.status) {
                 const column = [
-                    { header: "Amount", accessor: "amount", align: "center", sortable: true },
+                    { header: "Amount", accessor: "amount", align: "left", sortable: true },
                     { header: "Start Date", accessor: "startDate", align: "center" },
-                    { header: "End Date", accessor: "endDate", align: "left" },
-                    { header: "Total Payable Amount", accessor: "totalAmountPayable", align: "left", sortable: true },
-                    { header: "Action", accessor: "action", align: "center" },
+                    { header: "End Date", accessor: "endDate", align: "center" },
+                    { header: "Total Payable Amount", accessor: "totalAmountPayable", align: "center", sortable: true },
                     { header: "", accessor: "", align: "center" },
                 ]
 
@@ -85,19 +85,7 @@ const Page = () => {
                         endDate: val?.endDate,
                         totalAmountPayable: val?.totalAmountPayable,
                         amount: val?.amount,
-                        action: (
-                            <p></p>
-                            // <Box variant="caption" className="font-md flex items-center justify-center space-x-2">
-                            //     <Button variant="contained" size="small" className={text-[--white-color] !bg-[#d32f2f] text-2xl font-semibold tracking-wide text-center ${val.bookingStatus !== "pending" && "opacity-65 !text-[--white-color]"}}
-                            //         onClick={() => openModalHandler(val, "cancel")}
-                            //         disabled={val.bookingStatus !== "pending"}
-                            //     >Cancel</Button>
-                            //     <Button variant="contained" size="small" className={text-[--white-color] !bg-[#14A44D] text-2xl font-semibold tracking-wide text-center ${val.bookingStatus !== "pending" && "opacity-65  !text-[--white-color]"}}
-                            //         onClick={() => (val, "confirm")}
-                            //         disabled={val.bookingStatus !== "pending"}
-                            //     >Confirm</Button>
-                            // </Box>
-                        ),
+
                     }
                 })
 
@@ -153,13 +141,16 @@ const Page = () => {
     }, [router]);
 
     const handlePayment = async (id, amount) => {
+        console.log('data received', id)
         try {
             const payload = {
-                name: loginState.data.user.fullName,
+                name: loginState?.data?.user?.fullName ?? "savan",
                 amount: amount,
-                phone: String(loginState.data.user.phoneNumber),
+                phone: String(loginState?.data?.user?.phoneNumber ?? 1234567890),
                 planId: id
             }
+            console.log('data received', payload)
+
             const res = await createPaymentApi(payload)
             if (res.success) {
                 const redirectUrl = res.data.instrumentResponse.redirectInfo.url
@@ -172,17 +163,19 @@ const Page = () => {
     }
 
     return (
-        <div className='overflow-x-hidden'>
+        <div className='!overflow-x-hidden '>
             <Navbar />
-            <div className='w-screen h-screen  text-[--black_text]  bg-gray-50 !overflow-x-hidden'>
-                <div className="flex justify-between  w-full  px-10 items-center bg-white py-4">
-                    <p className='text-xl font-semibold text-[--black]'>Your Total Investment : 1000</p>
-                    <button onClick={handlePlan} className='flex justify-center items-center px-10 py-2 rounded-[10px] bg-[--secondary] text-white  font-medium '> Add Plan</button>
+            <div className=' mt-[80px] text-[--black_text]  bg-gray-50 !overflow-x-hidden '>
+                <div className=" bg-[#272727] py-4">
+                    <div className='w-[90%] mx-auto flex justify-between items-center'>
+                    <p className='md:text-xl text-lg font-medium md:font-semibold text-[--white] '>Your Total Investment : 1000</p>
+                    <button onClick={handlePlan} className='flex justify-center items-center md:px-10 px-6 py-2 rounded-[10px] bg-[--secondary] text-white  font-medium whitespace-nowrap '> Add Plan</button>
+                </div>
                 </div>
 
                 <div className='px-10 my-10'>
                     <CollapsibleDataTable
-                        table={{ columns: tableData.column, rows: tableData.row }} {...{ handlePayment, isLoading, handleTransitionList, isLoading1 ,transactionData}}
+                        table={{ columns: tableData.column, rows: tableData.row }} {...{ handlePayment, isLoading, handleTransitionList, isLoading1, transactionData }}
                     // isLoading={isLoading}
                     // filteredBookings={filteredBookings}
                     />
@@ -197,7 +190,7 @@ const Page = () => {
                             Cancel
                         </button>,
                         <button key="submit" type="primary" onClick={amountFormik.handleSubmit
-                            } className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium'>
+                        } className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium'>
                             Submit
                         </button>,
                     ]}
@@ -213,6 +206,7 @@ const Page = () => {
                     ) : null}
                 </Modal>
             </div >
+            <Footer/>
         </div>
     )
 }

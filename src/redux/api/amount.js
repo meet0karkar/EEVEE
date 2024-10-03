@@ -25,7 +25,7 @@ export const addAmount = async (data) => {
   }
 
   export const createPaymentApi = async (data) => {
-    console.log("================================")
+    console.log("================================eeeee")
     try {
       const response = await api.post('/user/payment',data);
       return response.data;

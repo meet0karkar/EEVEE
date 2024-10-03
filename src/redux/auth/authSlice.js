@@ -9,6 +9,12 @@ const loginIntialData = {
   error: null,
 }
 
+const signupIntialData = {
+  data: {},
+  isLoading: false,
+  error: null,
+}
+
 export const loginSlice = createSlice({
   name: 'login',
   initialState: loginIntialData,
@@ -18,7 +24,9 @@ export const loginSlice = createSlice({
       state.error = null; // Reset error before login
     },
     login_success: (state, action) => {
-      console.log('login===',action)
+      console.log('login===', action)
+      console.log(action.payload, "================================")
+
       state.isLoading = false;
       state.data = action.payload.data; // Store user data
       state.error = null;
@@ -31,9 +39,10 @@ export const loginSlice = createSlice({
 })
 
 
+
 export const signupSlice = createSlice({
   name: 'signup',
-  initialState: loginIntialData,
+  initialState: signupIntialData,
   reducers: {
     signup_start: (state) => {
       state.isLoading = true;
@@ -41,6 +50,7 @@ export const signupSlice = createSlice({
     },
     signup_success: (state, action) => {
       state.isLoading = false;
+      console.log(action.payload, "================================")
       state.data = action.payload.data; // Store user data
       state.error = null;
     },
@@ -58,7 +68,6 @@ export default {
   loginReducer: loginSlice.reducer,
   signupReducer: signupSlice.reducer,
 };
-
 
 export const loginApi = async (data, dispatch) => {
   console.log(data, "================================")
@@ -79,16 +88,16 @@ export const loginApi = async (data, dispatch) => {
 
 export const signupApi = async (data, dispatch) => {
   console.log(data, "================================")
-  dispatch(signup_start());
+  dispatch(login_start());
 
   try {
     const response = await api.post('/auth/signup', data);
-    dispatch(signup_success(response.data));
+    dispatch(login_success(response.data));
     message.success(response.data.message);
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data?.message || 'signup failed. Please try again.';
-    dispatch(signup_failed(errorMessage));
+    dispatch(login_failed(errorMessage));
     message.error(errorMessage);
     console.error('Signup error:', error);
   }
