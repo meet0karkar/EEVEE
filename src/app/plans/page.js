@@ -118,8 +118,11 @@ const Page = () => {
     }
 
     useEffect(() => {
-        console.log('amountSchema Status:')
-        getAmountList();
+        const authToken = Cookies.get('authToken');
+        if (!authToken)
+            router.push('/login');
+        else
+            getAmountList();
     }, [])
 
 
@@ -132,13 +135,6 @@ const Page = () => {
     const handlePlan = () => {
         setModalOpen(true)
     }
-
-    useEffect(() => {
-        const authToken = Cookies.get('authToken');
-        if (!authToken) {
-            router.push('/login');
-        }
-    }, [router]);
 
     const handlePayment = async (id, amount) => {
         console.log('data received', id)
@@ -168,9 +164,9 @@ const Page = () => {
             <div className=' mt-[80px] text-[--black_text]  bg-gray-50 !overflow-x-hidden '>
                 <div className=" bg-[#272727] py-4">
                     <div className='w-[90%] mx-auto flex justify-between items-center'>
-                    <p className='md:text-xl text-lg font-medium md:font-semibold text-[--white] '>Your Total Investment : 1000</p>
-                    <button onClick={handlePlan} className='flex justify-center items-center md:px-10 px-6 py-2 rounded-[10px] bg-[--secondary] text-white  font-medium whitespace-nowrap '> Add Plan</button>
-                </div>
+                        <p className='md:text-xl text-lg font-medium md:font-semibold text-[--white] '>Your Total Investment : 1000</p>
+                        <button onClick={handlePlan} className='flex justify-center items-center md:px-10 px-6 py-2 rounded-[10px] bg-[--secondary] text-white  font-medium whitespace-nowrap '> Add Plan</button>
+                    </div>
                 </div>
 
                 <div className='px-10 my-10'>
@@ -206,7 +202,7 @@ const Page = () => {
                     ) : null}
                 </Modal>
             </div >
-            <Footer/>
+            <Footer />
         </div>
     )
 }

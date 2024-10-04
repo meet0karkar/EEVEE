@@ -123,6 +123,7 @@
   --black_text: #000000d9;
   --white: #ffffff;
   --shadow-color: rgba(0, 0, 0, 0.6);
+  --policy-text: #919191;
 }
 
 @media (prefers-color-scheme: dark) {

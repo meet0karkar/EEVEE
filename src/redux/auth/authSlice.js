@@ -35,6 +35,9 @@ export const loginSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload.error; // Store error message
     },
+    login_reset: (state, action) => {
+      state.data ={}; // Store error message
+    },
   },
 })
 
@@ -61,7 +64,7 @@ export const signupSlice = createSlice({
   },
 })
 
-export const { login_start, login_success, login_failed } = loginSlice.actions;
+export const { login_start, login_success, login_failed ,login_reset} = loginSlice.actions;
 export const { signup_start, signup_success, signup_failed } = signupSlice.actions;
 
 export default {
