@@ -29,7 +29,7 @@ const Index = () => {
                 {/* Navigation Menu */}
                 <Fade direction='up' triggerOnce cascade delay={500}>
                     <ul className='z-10 cursor-pointer flex flex-col md:flex-row justify-between items-center gap-4 md:gap-10 md:text-lg font-medium tracking-wide'>
-                        <li><Link href="/">About</Link></li>
+                        <li><Link href="/about">About</Link></li>
                         <li><Link href="/contact">Get Help</Link></li>
                     </ul>
                 </Fade>

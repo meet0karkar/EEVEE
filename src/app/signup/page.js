@@ -181,7 +181,7 @@ const Page = () => {
                 />
             </div>
             {/* <section className="bg-gray-50 "> */}
-            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:min-h-screen w-full md:w-1/2 lg:py-0">
+            <div className="flex flex-col items-center justify-center px-2 md:px-6 py-8 mx-auto md:min-h-screen w-full md:w-1/2 lg:py-0">
                 <a
                     href="#"
                     className="flex items-center mb-6 text-2xl font-semibold text-[--primary] "

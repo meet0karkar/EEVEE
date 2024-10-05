@@ -4,13 +4,15 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login_reset } from '../../redux/auth/authSlice';
 import { Routes } from "../../utils/routes";
 
 const Index = () => {
     const router = useRouter();
+    const pathname = usePathname(); 
     const dispatch = useDispatch();
     const loginState = useSelector((state) => state.login);
     const signupState = useSelector((state) => state.signup);
@@ -54,6 +56,11 @@ const Index = () => {
         window.addEventListener("scroll", navbarVisible);
     }
 
+    useEffect(() => {
+        console.log("Current path:", pathname);
+        setRoutePath(pathname);
+    }, [pathname]);
+
     return (
         <nav
             className={`${toggle
@@ -75,16 +82,17 @@ const Index = () => {
 
                     <div className="navMenuItems hidden md:flex items-center md:space-x-5">
                         {Routes.map((route, index) => (
-                            <Link href={route.path} key={index}>
-                                <li
-                                    className={`relative list-none tracking-wide hover:text-[--secondary] transition-all ease-in-out duration-500 p-1  ${routePath === route.path &&
-                                        "!text-[--secondary]"
-                                        }`}
-                                    onClick={() => setRoutePath(route.path)}
-                                >
+                            <li
+                            key={index}
+                                className={`relative list-none tracking-wide hover:text-[--secondary] transition-all ease-in-out duration-500 p-1  ${routePath === route.path &&
+                                    "!text-[--secondary]"
+                                    }`}
+                                onClick={() => setRoutePath(route.path)}
+                            >
+                                <Link href={route.path} key={index}>
                                     {route.name}
-                                </li>
-                            </Link>
+                                </Link>
+                            </li>
                         ))}
                         <button className="bg-[--secondary]  px-6 py-2 text-bold rounded-full text-white tracking-wide  hover:scale-110 transition ease-in-out delay-150 duration-300" onClick={() => {
                             if (Object.keys(loginState.data).length > 0) {
@@ -133,25 +141,22 @@ const Index = () => {
                             onClick={handleCloseSideNavbar}
                         />
                     </div>
-                    <div className="w-trans[100%] flex items-start flex-col py-4 space-y-4 list-none px-4 transition-all ease-in-out duration-500">
+                    <div className="relative w-trans[100%] flex items-start flex-col py-4 space-y-4 list-none px-4 transition-all ease-in-out duration-500">
                         {Routes.map((route, index) => (
-                            <Link
-                                href={route.path}
-                                key={index}
-                                className="w-[100%]"
-                                onClick={handleCloseSideNavbar}
+                            <li key={index} className={`list-none hover:text-[--secondary] transition-all ease-in-out duration-500 w-[100%] border-b border-gray-500 py-[8px] text-[18px] capitalize font-medium  ${routePath === route.path ? "text-[--secondary] ": "text-[--white]"}`}
                             >
-                                <li
-                                    className={`list-none hover:text-[--secondary] transition-all ease-in-out duration-500 w-[100%] border-b border-gray-500 py-[8px] text-[18px] capitalize font-medium  ${routePath === route.path
-                                        ? "text-[--secondary] "
-                                        : "text-[--white] "
-                                        }`}
+                            {console.log('routePath =======>',routePath === route.path,routePath,route.path)}
+                                <Link
+                                    href={route.path}
+                                    key={index}
+                                    className="w-[100%]"
+                                    onClick={handleCloseSideNavbar}
                                 >
                                     {route.name}
-                                </li>
-                            </Link>
+                                </Link>
+                            </li>
                         ))}
-                        <button className="py-[8px] transition-all ease-in-out duration-500 hover:text-[--secondary] text-[18px] capitalize font-medium ml-1" onClick={() => {
+                        <button className="py-[8px] bg-[--secondary] text-white w-full flex justify-center items-center rounded-lg transition-all ease-in-out duration-500 text-[18px] capitalize font-medium ml-1" onClick={() => {
                             if (Object.keys(loginState.data).length > 0) {
                                 handleLogout();
                             } else {
@@ -252,7 +257,7 @@ const Index = () => {
                             </Link>
                         )}
                     </div> */}
-        </nav>
+        </nav >
     );
 };
 

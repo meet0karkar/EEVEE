@@ -1,21 +1,15 @@
 'use client'
 import { addAmount, createPaymentApi, getAmoutListApi, getTransactionHistoryApi } from '@/redux/api/amount'
-import { Modal, Space, Table } from 'antd'
-import Image from 'next/image'
-import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import crypto from 'crypto-js'; // For client-side hashing, but prefer to handle on the backend
-import { Buffer } from 'buffer';
-import Navbar from '../../components/navbar'
-import CollapsibleDataTable from '../../components/accordianTable'
-import { Box, Button } from '@mui/material'
+import { Modal } from 'antd'
+import { useFormik } from 'formik'
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
-import Cookies from 'js-cookie';
-import CircularProgress from '@mui/material/CircularProgress';
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import * as Yup from 'yup'
+import CollapsibleDataTable from '../../components/accordianTable'
 import Footer from '../../components/footer'
+import Navbar from '../../components/navbar'
 
 
 const amountSchema = Yup.object().shape({
@@ -165,10 +159,9 @@ const Page = () => {
                 <div className=" bg-[#272727] py-4">
                     <div className='w-[90%] mx-auto flex justify-between items-center'>
                         <p className='md:text-xl text-lg font-medium md:font-semibold text-[--white] '>Your Total Investment : 1000</p>
-                        <button onClick={handlePlan} className='flex justify-center items-center md:px-10 px-6 py-2 rounded-[10px] bg-[--secondary] text-white  font-medium whitespace-nowrap '> Add Plan</button>
+                        <button onClick={handlePlan} className='flex justify-center items-center md:px-6 px-4 py-2 rounded-[10px] bg-[--secondary] text-white  font-medium whitespace-nowrap '> Create Plan</button>
                     </div>
                 </div>
-
                 <div className='px-10 my-10'>
                     <CollapsibleDataTable
                         table={{ columns: tableData.column, rows: tableData.row }} {...{ handlePayment, isLoading, handleTransitionList, isLoading1, transactionData }}
