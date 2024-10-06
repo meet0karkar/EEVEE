@@ -16,9 +16,11 @@ const Page = () => {
         <div className="overflow-x-hidden bg-[--black]  h-auto" >
             <Navbar />
 
+            <Fade cascade triggerOnce delay={300} direction='down'>
             <div className=' mx-auto h-[40vh] md:h-[70vh] w-screen flex items-center justify-center'>
                 <p className="w-[90%] md:w-1/2 mx-auto text-center text-[--white] text-[28px] lg:text-[40px] tracking-wide">Get in touch with us.<br /> Send us a message.</p>
             </div>
+            </Fade>
             <div className=' mx-auto mb-10 bg-[#272727]  h-auto rounded-[20px] relative overflow-x-hidden ' >
                 <div>
                     <Image src="/bg-1.png" alt="" height={400} width={400} className="absolute top-0 left-0 rotate-45 " style={{ filter: "blur(0px)" }} />
@@ -26,36 +28,35 @@ const Page = () => {
                 </div>
                 <div className='w-[90%] flex  md:flex-row flex-col justify-between gap-10  items-center mx-auto py-10'>
                     <div className=' md:w-1/2 flex flex-col space-y-6 items-start'>
-                        <Fade cascade triggerOnce delay={100} direction='left'>
+                        <Fade cascade triggerOnce delay={400} direction='left'>
                             <div className='flex justify-center items-start space-x-6 '>
                                 <Image src="/address.png" alt="" height={40} width={40} className=" " />
                                 <div className='flex justify-center  flex-col '>
-                                    <p className='md:text-xl text-lg  font-medium '>Address</p>
+                                    <p className='md:text-xl text-lg  font-medium text-[--white]'>Address</p>
                                     <p className='md:text-lg text-[--gray]  md:font-medium'> 8-9, Bhakti Arcade Pramukh Park Soc, Satellite Rd, near Mahadev Chowk, Mota Varachha, Surat, Gujarat 394101</p>
                                 </div>
                             </div>
                         </Fade>
-                        <Fade cascade triggerOnce delay={100} direction='left'>
-
+                        <Fade cascade triggerOnce delay={400} direction='left'>
                             <div className='flex justify-center items-start space-x-6'>
                                 <Image src="/mail.png" alt="" height={40} width={40} className=" " />
                                 <div className='flex justify-center  flex-col '>
-                                    <p className='md:text-xl text-lg font-medium '>Email</p>
+                                    <p className='md:text-xl text-lg font-medium text-[--white]'>Email</p>
                                     <p className='md:text-lg text-[--gray]  md:font-medium'>support@eeveegold.com </p>
                                 </div>
                             </div>
                         </Fade>
-                        <Fade cascade triggerOnce delay={100} direction='left'>
+                        <Fade cascade triggerOnce delay={400} direction='left'>
                             <div className='flex justify-center items-start space-x-6'>
                                 <Image src="/calling.png" alt="" height={40} width={40} className=" " />
                                 <div className='flex justify-center  flex-col '>
-                                    <p className='md:text-xl text-lg font-medium  '>Phone</p>
+                                    <p className='md:text-xl text-lg font-medium  text-[--white]'>Phone</p>
                                     <p className='md:text-lg text-[--gray]  md:font-medium'>+91 8758764001</p>
                                 </div>
                             </div>
                         </Fade>
                     </div>
-                    <Fade cascade triggerOnce delay={100} direction='right' >
+                    <Fade cascade triggerOnce delay={400} direction='right' >
                         <div className='w-full bg-white rounded-3xl p-4'>
                             <form className='space-y-4 text-[--gray]' >
 

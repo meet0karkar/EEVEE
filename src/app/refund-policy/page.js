@@ -6,7 +6,7 @@ const Page = () => {
     return (
         <div className=''>
             <Navbar />
-            <div className='lg:my-32  lg:mt-40 md:my-28  mt-24 mb-16 w-[90%] mx-auto text-[--policy-text]'>
+            <div className='lg:my-32  lg:mt-40 md:my-28  mt-24 mb-16 w-[90%] mx-auto text-[--policy-text] tracking-wide'>
                 <h1 className='font-bold text-[30px] text-white '>Refund Policy</h1>
                 <div>
                     <p className='font-semibold mt-6 mb-4'>

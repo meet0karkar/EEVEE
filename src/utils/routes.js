@@ -29,15 +29,15 @@ export const Routes = [
 export const Features = [
     {
         title: "First Investment",
-        details: "Make your initial deposit to qualify for the 15+1 program."
+        details: "Make your initial deposit to qualify for the 16+1 program."
     },
     {
         title: "Monthly Commitment",
-        details: "Invest the same amount for 15 consecutive months."
+        details: "Invest the same amount for 16 consecutive months."
     },
     {
         title: "No Fees",
-        details: "Your 16th month’s deposit is fully covered by us."
+        details: "Your 17th month’s deposit is fully covered by us."
     },
     {
         title: "Free Month",
@@ -57,14 +57,14 @@ export const Features = [
     },
     {
         title: "Simple Start",
-        details: "Join now and unlock your 16th month free after 15 months!"
+        details: "Join now and unlock your 17th month free after 16 months!"
     },
 ]
 
 export const Features_About = [
     {
         title: "16+1 Investment Reward Program",
-        details: "Offers a free 16th month of investment for loyal users."
+        details: "Offers a free 17th month of investment for loyal users."
     },
     {
         title: "MGold Investment Platform",

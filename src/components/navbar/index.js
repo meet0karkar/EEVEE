@@ -12,7 +12,7 @@ import { Routes } from "../../utils/routes";
 
 const Index = () => {
     const router = useRouter();
-    const pathname = usePathname(); 
+    const pathname = usePathname();
     const dispatch = useDispatch();
     const loginState = useSelector((state) => state.login);
     const signupState = useSelector((state) => state.signup);
@@ -83,7 +83,7 @@ const Index = () => {
                     <div className="navMenuItems hidden md:flex items-center md:space-x-5">
                         {Routes.map((route, index) => (
                             <li
-                            key={index}
+                                key={index}
                                 className={`relative list-none tracking-wide hover:text-[--secondary] transition-all ease-in-out duration-500 p-1  ${routePath === route.path &&
                                     "!text-[--secondary]"
                                     }`}
@@ -105,10 +105,9 @@ const Index = () => {
                     <div className="block md:hidden cursor-pointer">
                         <MenuIcon
                             fontSize="medium"
-                            className={`${isNavbarBg
-                                ? "text-[--black]"
-                                : "text-[--white] hover:text-[--secondary] transition-all ease-in-out duration-500"
-                                }`}
+                            className={`
+                            "text-[--white] hover:text-[--secondary] transition-all ease-in-out duration-500"
+                                `}
                             onClick={handleOpenSideNavbar}
                         />
                     </div>
@@ -143,9 +142,9 @@ const Index = () => {
                     </div>
                     <div className="relative w-trans[100%] flex items-start flex-col py-4 space-y-4 list-none px-4 transition-all ease-in-out duration-500">
                         {Routes.map((route, index) => (
-                            <li key={index} className={`list-none hover:text-[--secondary] transition-all ease-in-out duration-500 w-[100%] border-b border-gray-500 py-[8px] text-[18px] capitalize font-medium  ${routePath === route.path ? "text-[--secondary] ": "text-[--white]"}`}
+                            <li key={index} className={`list-none hover:text-[--secondary] transition-all ease-in-out duration-500 w-[100%] border-b border-gray-500 py-[8px] text-[18px] capitalize font-medium  ${routePath === route.path ? "text-[--secondary] " : "text-[--white]"}`}
                             >
-                            {console.log('routePath =======>',routePath === route.path,routePath,route.path)}
+                                {console.log('routePath =======>', routePath === route.path, routePath, route.path)}
                                 <Link
                                     href={route.path}
                                     key={index}
