@@ -5,7 +5,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { PhoneInput } from "react-international-phone";
-import "react-international-phone/style.css";
+import "react-international-phone/style.css" ;
 import {
     otpVerificationApi,
     resendOtpApi,
