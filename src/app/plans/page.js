@@ -8,8 +8,8 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import * as Yup from 'yup'
 import CollapsibleDataTable from '../../components/accordianTable'
-import Footer from '../../components/footer'
-import Navbar from '../../components/navbar'
+import Footer from '../../components/footer' 
+import Navbar  from '../../components/navbar'
 
 
 const amountSchema = Yup.object().shape({
