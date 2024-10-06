@@ -24,7 +24,7 @@ const Index = () => {
             <div className='flex flex-col md:flex-row justify-between items-center w-[90%] mx-auto py-6 border-b border-[--secondary]'>
                 {/* Logo */}
                 <Fade direction='up' triggerOnce cascade delay={300}>
-                    <h1 className='font-medium text-2xl md:text-3xl text-[--primary] mb-4 '>EEVEE</h1>
+                    <Link href="/" className='font-medium text-2xl md:text-3xl text-[--primary] mb-4 '>EEVEE</Link>
                 </Fade>
                 {/* Navigation Menu */}
                 <Fade direction='up' triggerOnce cascade delay={300}>

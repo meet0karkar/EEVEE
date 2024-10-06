@@ -20,11 +20,11 @@ const Page = () => {
                         When you log in, we will also set up several cookies to save your login information and your screen display choices. Login cookies last for two days, and screen options cookies last for a year. If you select “Remember Me”, your login will persist for two weeks. If you log out of your account, the login cookies will be removed.
                     </p>
                     <br />
-                    <p className='font-semibold my-2'>
-                        What rights do you have over your data
+                    <p className='font-semibold mt-3 '>
+                        WHAT RIGHTS DO YOU HAVE OVER YOUR DATA
                     </p>
                    
-                    <p className='leading-relaxed mb-3'>
+                    <p className='leading-relaxed my-3'>
                         If you have an account on this site, or have left comments, you can request to receive an exported file of the personal data we hold about you, including any data you have provided to us.You can also request that we erase any personal data we hold about you.This does not include any data we are obliged to keep for administrative, legal, or security purposes.
                     </p>
                     <ol className='list-disc pl-6 space-y-2 leading-relaxed'>
@@ -43,7 +43,73 @@ const Page = () => {
                     </ol>
                 </div>
 
-            </div>
+          
+          
+        <p className='leading-relaxed mt-3'>
+            This Privacy Policy applies to all the Users whose Personal Information has been processed by Us in the course of our business, website, forums, blogs, and other online or offline offerings. 
+        </p>
+        <p className='leading-relaxed mt-3'>
+            We respect your privacy and hence handle your personal data with the utmost care and confidentiality.
+        </p>
+        
+        <h3 className='font-semibold mt-6 '>USE OF YOUR INFORMATION</h3>
+        <p className='leading-relaxed my-3'>
+            We use the Personal Information and other non-Personal Information, for the following:
+        </p>
+        <ul className='list-disc pl-6 space-y-2 leading-relaxed'>
+            <li>To provide and improve the Services on the Platform that You request;</li>
+            <li>To resolve disputes and troubleshoot problems;</li>
+            <li>To help promote a safe service on the Platform and protect the security and integrity of the Platform, the Services and the users;</li>
+            <li>Collect money from You in relation to the Services;</li>
+            <li>Inform You about online and offline offers, products, services, and updates;</li>
+            <li>Customize Your experience on the Platform or share marketing material with You;</li>
+            <li>To detect, prevent and protect Us from any errors, fraud and other criminal or prohibited activity on the Platform;</li>
+            <li>Enforce and inform about our terms and conditions;</li>
+            <li>To process and fulfil Your request for Services or respond to Your comments, and queries on the Platform;</li>
+            <li>To contact You;</li>
+            <li>To allow Our business partners and/or associates to present customized messages to You;</li>
+            <li>To communicate important notices or changes in the Services provided by the Company, use of the Platform and the terms/policies which govern the relationship between You and the Company and with Our affiliates;</li>
+            <li>For any other purpose after obtaining Your consent at the time of collection.</li>
+        </ul>
+        
+        <h3 className='font-semibold mt-6'>SECURITY PRECAUTIONS AND MEASURES</h3>
+        <p className='leading-relaxed my-3'>
+            Our Platform has reasonable security measures and safeguards in place to protect Your privacy and Personal Information from loss, misuse, unauthorized access, disclosure, destruction, and alteration of the information in compliance with applicable laws. Further, whenever You change or access Your account on the Platform or any information relating to it, We offer the use of a secure server. We cannot however ensure or warrant the security of any information You transmit to the Company or guarantee that Your Personal Information and/or other Non-Personal Information provided for availing the Services or Platform may not be accessed, disclosed, altered or destroyed by a breach of any of Our security measures and safeguards.
+        </p>
+        
+        <h3 className='font-semibold mt-6'>DATA STORAGE AND RETENTION POLICY</h3>
+        <p className='leading-relaxed my-3'>
+            We collect and store your data and Personal Information in AWS cloud as you use services and will retain the data for as long as necessary to fulfill the purposes for which it was obtained. Processed and non-identifiable data, however, will be perpetually stored.
+        </p>
+        <p className='leading-relaxed mt-2'>
+            To determine the appropriate retention period for personal data, we consider the amount, nature, and sensitivity of the personal data, the potential risk of harm from unauthorized use or disclosure of your personal data, the purposes for which we process your personal data and whether we can achieve those purposes through other means, and the applicable legal requirements.
+        </p>
+
+        <h3 className='font-semibold mt-6'>CHANGES TO PRIVACY POLICY</h3>
+        <p className='leading-relaxed my-3'>
+            We reserve the unconditional right to change, modify, add, or remove portions of this Privacy Policy at any time, without specifically notifying You of such changes. Any changes or updates will be effective immediately. You should review this Privacy Policy regularly for changes. Your acceptance of the amended Privacy Policy shall signify Your consent to such changes and agreement to be legally bound by the same.
+        </p>
+
+        <h3 className='font-semibold mt-6'>GRIEVANCE OFFICER</h3>
+        <p className='leading-relaxed my-3'>
+            If You have any privacy concerns, please feel free to reach out to the grievance officer, the name and contact details of this Officer have been provided below:
+        </p>
+        <p className='leading-relaxed mt-2'>
+            Name: Mr. Gordhanbhai Radadiya
+        </p>
+        <p className='leading-relaxed mt-2'>
+            Email: support@eeveegold.com
+        </p>
+        <p className='leading-relaxed mt-2'>
+            He shall try to acknowledge the complaint within twenty-four hours and dispose of such complaint within a period of fifteen days from the date of receipt of complaint.
+        </p>
+        <p className='leading-relaxed mt-2'>
+            Effective as on 1st September 2024
+        </p>
+        <p className='leading-relaxed mt-2'>
+            Registered Office address: 8-9, Bhakti Arcade, Pramukh Park Soc, Satellite Rd, Near Mahadev Chowk, Mota Varachha, Surat, Gujarat, 394101
+        </p>
+    </div>
             <Footer />
         </div>
     )

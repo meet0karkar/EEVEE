@@ -73,12 +73,12 @@ const Index = () => {
             {/* Web Navbar */}
             <div className="w-[90%] mx-auto ">
                 <div className="flex justify-between items-center py-4">
-                    <h1
+                    <Link href="/"
                         className={`font-medium text-xl md:text-3xl text-[--primary]
                             `}
                     >
                         EEVEE
-                    </h1>
+                    </Link>
 
                     <div className="navMenuItems hidden md:flex items-center md:space-x-5">
                         {Routes.map((route, index) => (

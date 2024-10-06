@@ -35,7 +35,7 @@ export default function AboutUs() {
 
                             <Fade direction='down' triggerOnce cascade delay={500}>
                                 <Link href="https://eevee.in/pages/our-store" target='_blank' >
-                                <button className='mt-10 hover:bg-[--secondary] hover:text-[--white] bg-[--white] rounded-full px-8 py-2 font-medium text-[--black] transition-all ease-in-out duration-500'>Visit EEVEE Gold</button>
+                                    <button className='mt-10 hover:bg-[--secondary] hover:text-[--white] bg-[--white] rounded-full px-8 py-2 font-medium text-[--black] transition-all ease-in-out duration-500'>Visit EEVEE Gold</button>
                                 </Link>
                             </Fade>
                         </div>
@@ -49,10 +49,16 @@ export default function AboutUs() {
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-4 md:space-y-0  md:space-x-6 lg:space-x-8  pt-10'>
                             <Fade direction='up' triggerOnce cascade delay={400} className='border border-slate-700 rounded-[12px] p-6 transition ease-in-out delay-150 hover:scale-105  cursor-pointer duration-300'>
                                 <div className='flex flex-col space-y-4'>
-
                                     <h1 className='text-xl text-left tracking-wider text-[#ededed] font-medium'>Next Generation of Savings</h1>
-                                    <h1 className='text-[--gray] text-sm text-justify tracking-wide'>Our platform is built for the modern investor. We offer a 16+1 Investment Reward Program that gives you a free 17th month after 16 consecutive months of investment. This unique loyalty program helps our customers maximize their wealth effortlessly—no hidden fees, just transparent and consistent rewards. We provide an intuitive dashboard that tracks your progress, so you’re always in control of your journey.
-                                    </h1>
+                                    <ol className='text-[--gray] text-sm text-justify tracking-wide list-disc pl-6 space-y-2 leading-relaxed'>
+                                        <li>Built for modern investors.</li>
+                                        <li>Offers a 16+1 Investment Reward Program.</li>
+                                        <li>After 16 consecutive months of investment, the 17th month is free.</li>
+                                        <li>Helps customers maximize their wealth effortlessly.</li>
+                                        <li>No hidden fees, with transparent and consistent rewards</li>
+                                        <li>Provides an intuitive dashboard to track progress.</li>
+                                        <li>Customers remain in control of their investment journey.</li>
+                                    </ol>
                                 </div>
                             </Fade>
                             <Fade direction='up' triggerOnce cascade delay={400} className='border border-slate-700 rounded-[12px] p-6  transition ease-in-out delay-150 hover:scale-105  cursor-pointer duration-300'>
@@ -85,10 +91,18 @@ export default function AboutUs() {
                             <Fade direction='up' triggerOnce cascade delay={400} className='border border-slate-700 rounded-[12px] p-6  transition ease-in-out delay-150 hover:scale-105  cursor-pointer duration-300'>
                                 <div className='flex flex-col space-y-4'>
                                     <h1 className='text-xl text-left tracking-wider text-[#ededed] font-medium'>Seamless Account Creation</h1>
-                                    <h1 className='text-[--gray] text-sm text-justify tracking-wide'>We prioritize simplicity. Signing up takes just a few minutes—quick registration, identity verification, and you’re ready to start your investment journey. Our platform is secure, user-friendly, and designed to help you manage your wealth with ease.
-                                    </h1>
-                                    <h1 className='text-[--gray] text-sm text-justify tracking-wide'>From the moment you create an account, you&lsquo;re empowered to take control of your financial future.
-                                    </h1>
+                                    
+
+                                    <ol className='text-[--gray] text-sm text-justify tracking-wide list-disc pl-6 space-y-2 leading-relaxed'>
+                                        <li>Prioritizes simplicity in the process.</li>
+                                        <li>Signing up takes just a few minutes.</li>
+                                        <li>Involves quick registration and identity verification.</li>
+                                        <li>Secure, user-friendly platform for managing wealth with ease.
+                                        </li>
+                                        <li>Designed to help you start your investment journey seamlessly.
+                                        </li>
+                                        <li>Empowers you to take control of your financial future from the moment you create an account.</li>
+                                    </ol>
                                 </div>
                             </Fade>
                         </div>
@@ -144,7 +158,7 @@ export default function AboutUs() {
                             {Features_About.map((val, index) => {
                                 return (
                                     <div key={index}
-                                        className={`px-7 py-8 border-[--secondary] space-y-5 ${index % 2 === 0 ? 'md:border-r-2 md:border-r-[--primary]' : ''} ${index < Features_About.length - 2 ? 'border-b-2' : 'md:border-b-0'} ${index===Features_About.length-2 && 'md:border-b-0 border-b-2'}`}>
+                                        className={`px-7 py-8 border-[--secondary] space-y-5 ${index % 2 === 0 ? 'md:border-r-2 md:border-r-[--primary]' : ''} ${index < Features_About.length - 2 ? 'border-b-2' : 'md:border-b-0'} ${index === Features_About.length - 2 && 'md:border-b-0 border-b-2'}`}>
                                         <Fade direction='up' triggerOnce cascade delay={400}>
                                             <p className="text-white text-center text-lg md:text-xl font-medium md:font-semibold">
                                                 {val.title}

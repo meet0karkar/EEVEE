@@ -172,16 +172,19 @@ const Page = () => {
     };
 
     return (
-        <div className="bg-white h-screen flex flex-col md:flex-row">
-            <div className="hidden md:flex w-1/2 bg-gray-200 items-center justify-center">
-                <img
-                    src="/gold2.jpg"
-                    alt="Login Visual"
-                    className="object-cover w-full h-full"
-                />
-            </div>
+        <div className=""  style={{
+            backgroundImage: "url(download-3.jpeg)",
+            backgroundPosition: "center",
+            backgroundSize: "cover", // Change to cover
+            height: "100vh", // Set height to full viewport height
+            width: "100vw", // Ensure it stretches across the screen
+            backgroundBlendMode: "darken",
+        }}>
+           
             {/* <section className="bg-gray-50 "> */}
-            <div className="flex flex-col items-center justify-center px-2 md:px-6 py-8 mx-auto md:min-h-screen w-full md:w-1/2 lg:py-0">
+            <div style={{ backgroundColor: "rgba(0, 0, 0, 0.5)",backdropFilter: "blur(8px)", position: "relative",}}>
+
+            <div className="flex flex-col items-center justify-center px-2 md:px-6 py-8 mx-auto min-h-screen w-full md:w-1/2 lg:py-0">
                 <a
                     href="#"
                     className="flex items-center mb-6 text-2xl font-semibold text-[--primary] "
@@ -475,6 +478,7 @@ const Page = () => {
                         </p>
                     </div>
                 </div>
+            </div>
             </div>
             {/* </section> */}
         </div>
