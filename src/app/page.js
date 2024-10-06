@@ -22,7 +22,7 @@ export default function Home() {
 
   return (
     <div className="overflow-x-hidden bg-[--black]  h-auto" >
-      <Navbar />
+      <Navbar/>
       <div className='flex flex-col space-y-14  w-[90%]  mx-auto'>
       {/* main section */}
 
