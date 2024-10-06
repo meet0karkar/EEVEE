@@ -19,7 +19,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { CircularProgress } from "@mui/material";
 
-// Validation Schema for Signup Form
+// Validation Schema for Signup form
 const emailSchema = Yup.object().shape({
     email: Yup.string()
         .email("Invalid email address")
