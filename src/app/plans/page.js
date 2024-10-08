@@ -75,6 +75,7 @@ const Page = () => {
     });
 
     const [investmentData, setinvestmentData] = useState([])
+    const [totalInvest, setTotalInvest] = useState(0)
     const [transactionData, setTransactionData] = useState([])
     const [modalOpen, setModalOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -110,6 +111,7 @@ const Page = () => {
 
                 // setCurrentStep(2)
                 setinvestmentData(data.data)
+                setTotalInvest(data.totalInvest)
                 setTableData({ column, row })
                 setModalOpen(false)
                 setIsLoading(false)
@@ -213,7 +215,7 @@ const Page = () => {
             <div className=' mt-[80px] text-[--black_text]  bg-gray-50 !overflow-x-hidden '>
                 <div className=" bg-[#272727] py-4">
                     <div className='w-[90%] mx-auto flex justify-between items-center'>
-                        <p className='md:text-xl text-lg font-medium md:font-semibold text-[--white] '>Your Total Investment : 1000</p>
+                        <p className='md:text-xl text-lg font-medium md:font-semibold text-[--white] '>Your Total Investment : {totalInvest}</p>
                         <button onClick={handlePlan} className='flex justify-center items-center md:px-6 px-4 py-2 rounded-[10px] bg-[--secondary] text-white  font-medium whitespace-nowrap '> Create Plan</button>
                     </div>
                 </div>
