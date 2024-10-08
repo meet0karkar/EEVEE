@@ -167,5 +167,21 @@ export const forgotPasswordApi = async (data) => {
   }
 }
 
+export const ForgetSendOtpToEMailApi = async (data) => {
+  console.log(data, "================================")
+  // dispatch(signup_start());
+
+  try {
+    const response = await api.post('/auth/forgot/password', data);
+    // dispatch(signup_success(response.data));
+    message.success(response.data.message);
+    return response.data;
+  } catch (error) {
+    const errorMessage = error.response?.data?.message || 'signup failed. Please try again.';
+    // dispatch(signup_failed(errorMessage));
+    message.error(errorMessage);
+    console.error('otp error:', error);
+  }
+}
 
 

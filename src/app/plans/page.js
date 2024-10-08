@@ -1,5 +1,5 @@
 'use client'
-import { addAmount, createPaymentApi, getAmoutListApi, getTransactionHistoryApi } from '@/redux/api/amount'
+import { addAmount, createPaymentApi, getAmoutListApi, getTransactionHistoryApi, paymentImage } from '@/redux/api/amount'
 import { Modal } from 'antd'
 import { useFormik } from 'formik'
 import Cookies from 'js-cookie'
@@ -8,8 +8,11 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import * as Yup from 'yup'
 import CollapsibleDataTable from '../../components/accordianTable'
-import Footer from '../../components/footer' 
-import Navbar  from '../../components/navbar'
+import Footer from '../../components/footer'
+import Navbar from '../../components/navbar'
+import { Button, Upload, message } from 'antd';
+import { UploadOutlined, CloseOutlined } from '@ant-design/icons';
+import { QRCodeSVG } from 'qrcode.react';
 
 
 const amountSchema = Yup.object().shape({
@@ -17,7 +20,28 @@ const amountSchema = Yup.object().shape({
         .required("Amount is required"),
 });
 
+
 const Page = () => {
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [previewImage, setPreviewImage] = useState(null);
+
+    // Handle image selection
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setSelectedImage(file); // Store the file object itself
+            setPreviewImage(URL.createObjectURL(file)); // Create a URL for preview
+        }
+    };
+
+    const handleCancel = () => {
+        setAmount()
+        setPlanId('')
+        setPreviewImage(null)
+        setSelectedImage(null)
+        setIsModalVisible(false);
+    };
 
     const router = useRouter()
     const loginState = useSelector((state) => state.login);
@@ -55,8 +79,9 @@ const Page = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isLoading1, setIsLoading1] = useState(false);
+    const [planId, setPlanId] = useState('');
+    const [amount, setAmount] = useState();
     const [tableData, setTableData] = useState({ column: [], row: [] });
-
 
     const getAmountList = async () => {
         setIsLoading(true)
@@ -119,36 +144,66 @@ const Page = () => {
             getAmountList();
     }, [])
 
-
-    // "amount": 10000,
-    //         "startDate": "2024-09-29",
-    //         "endDate": "2025-09-29",
-    //         "totalAmountPayable": 120000,
-
-
     const handlePlan = () => {
         setModalOpen(true)
     }
 
     const handlePayment = async (id, amount) => {
         console.log('data received', id)
-        try {
-            const payload = {
-                name: loginState?.data?.user?.fullName ?? "savan",
-                amount: amount,
-                phone: String(loginState?.data?.user?.phoneNumber ?? 1234567890),
-                planId: id
-            }
-            console.log('data received', payload)
+        setIsModalVisible(true);
+        setPlanId(id)
+        setAmount(amount)
+    }
 
-            const res = await createPaymentApi(payload)
-            if (res.success) {
-                const redirectUrl = res.data.instrumentResponse.redirectInfo.url
-                router.replace(redirectUrl)
-            }
+
+
+    console.log('handle', selectedImage)
+
+    const handleUploadImage = async (event) => {
+        event.preventDefault();
+        if (!selectedImage) {
+            alert("Please select an image first");
+            return;
         }
-        catch (err) {
-            console.log(err)
+
+
+        const formData = new FormData();
+        formData.append('image', selectedImage);
+
+        try {
+            // Sending form data to the server
+            const response = await paymentImage(formData);
+
+            if (response.status = 200) {
+                try {
+                    const payload = {
+                        amount: amount,
+                        planId: planId,
+                        paymentImage: response?.data?.image?.location,
+                        // name: loginState?.data?.user?.fullName ?? "savan",
+                        // phone: String(loginState?.data?.user?.phoneNumber ?? 1234567890),
+                    }
+
+                    const res = await createPaymentApi(payload)
+                    if (res) {
+                        setAmount()
+                        setPlanId('')
+                        setPreviewImage(null)
+                        setSelectedImage(null)
+                        // const redirectUrl = res.data.instrumentResponse.redirectInfo.url
+                        // router.replace(redirectUrl)
+                    }
+                }
+                catch (err) {
+                    console.log(err)
+                }
+                message.success('Payment image uploaded successfully.');
+            } else {
+                message.error('Failed to upload payment image.');
+            }
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            message.error('Error uploading payment image.');
         }
     }
 
@@ -194,7 +249,62 @@ const Page = () => {
                         <div className="text-red-500 text-sm">{amountFormik.errors.amount}</div>
                     ) : null}
                 </Modal>
-            </div >
+                <Modal
+                    title={null}
+                    centered
+                    open={isModalVisible}
+                    closable={false}
+                    footer={[
+                        <button key="back" onClick={() => {
+                            setIsModalVisible(false)
+                            setAmount()
+                            setPlanId('')
+                            setPreviewImage(null)
+                            setSelectedImage(null)
+                        }} className='border mr-4 rounded-md bg-white px-4 py-2' >
+                            Cancel
+                        </button>,
+                        <button key="submit" type="primary" className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium' onClick={handleUploadImage}>
+                            Submit
+                        </button>,
+                    ]}
+                >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', }} className='border-b pb-2'>
+                        <div style={{ color: '#000000d9', fontSize: '20px', fontWeight: 'bold' }}>Payment Information</div>
+                        <CloseOutlined style={{ fontSize: '16px', cursor: 'pointer' }} className='hover:text-[--black] text-[--gray]' onClick={handleCancel} />
+                    </div>
+                    <div style={{ display: 'flex', }} className='justify-between'>
+                        {/* Left part */}
+                        <div >
+                            <h3 className='text-black  font-semibold text-lg my-4'>Account Information</h3>
+                            <p className='text-[--gray] mb-2 font-medium'>Account Number: 437105500722</p>
+                            <p className='text-[--gray] mb-2 font-medium'>IFSC Code: ICIC0004371</p>
+                        </div>
+                        {/* Right part */}
+                        <div>
+                            <h3 className='text-black  font-semibold text-lg my-4'>UPI & QR Code</h3>
+                            {/* <QRCodeSVG value="upi://pay?pa=your_upi_id@upi" size={150} className='text-[--gray] mb-2 font-medium' /> */}
+                            <p className='text-[--gray] mb-2 font-medium'>UPI ID: eeveelifestylellp.ibz@icici</p>
+                        </div>
+                    </div>
+                    {/* Below both sections */}
+                    <div style={{ marginTop: '20px' }}>
+                        <p className='mb-4'><strong>Note:</strong> It will take a minimum of 1 day to receive your invoice after successful payment.</p>
+                        <div className='flex  items-center gap-4 m-2 ml-0'>
+
+                            <input type="file" accept="image/*" onChange={handleImageChange} />
+                            {previewImage && (
+                                <div>
+                                    <p>Image Preview:</p>
+                                    <img src={previewImage} alt="Preview" width="200px" />
+                                </div>
+                            )}
+
+                        </div>
+                        <p>Please upload the screenshot of the successful payment here for reference.</p>
+                    </div>
+                </Modal>
+            </div>
             <Footer />
         </div>
     )

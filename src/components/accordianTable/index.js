@@ -75,7 +75,6 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
                                 <div className='flex justify-end gap-2 items-center'>
                                    
                                     <button className='px-6 py-2 rounded-lg border border-[--secondary]   bg-[--secondary]  tracking-wide text-white font-semibold ' onClick={() => {
-
                                         handlePayment(row?.id, row?.amount)
                                     }}><span className=' '>Invest More</span></button>
                                 </div>
@@ -103,7 +102,7 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
                                                             style: "currency",
                                                             currency: "INR",
                                                             minimumFractionDigits: 2,
-                                                        }).format((item.amount)/100)}</TableCell>
+                                                        }).format((item.amount))}</TableCell>
                                                         <TableCell align="center" className='w-full whitespace-nowrap' >{item.paymentMethod}</TableCell>
                                                         <TableCell align="center" className='w-full whitespace-nowrap' >{item.transactionId}</TableCell>
                                                         <TableCell align="center" className='w-full whitespace-nowrap' >{new Date(item?.transactionDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</TableCell>

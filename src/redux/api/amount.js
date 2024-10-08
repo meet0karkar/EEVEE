@@ -45,4 +45,33 @@ export const addAmount = async (data) => {
       message.error(errorMessage);
     }
   }
+
+  export const contactDetaisApi = async (payload) => {
+    try {
+    console.log("================================savan",payload)
+
+      const response = await api.post('/user/contact',payload);
+      return response.data;
+    } catch (error) {
+      const errorMessage = error.response?.data?.message;
+      message.error(errorMessage);
+    }
+  }
+  
+
+  export const paymentImage = async (payload) => {
+    console.log("================================savan",payload,)
+    try {
+
+      const response = await api.post('/user/image/uploads', payload, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        }
+      });
+      return response.data;
+    } catch (error) {
+      const errorMessage = error.response?.data?.message;
+      message.error(errorMessage);
+    }
+  }
   
