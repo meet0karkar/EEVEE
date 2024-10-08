@@ -11,6 +11,7 @@ export const Routes = [
     {
         name: "Home",
         path: "/"
+        
     },
     {
         name: "Plans",
