@@ -237,7 +237,7 @@ const Page = () => {
                         </button>,
                         <button key="submit" type="primary" onClick={ () => alert("success")           }
 className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium'>
-                            Submit2
+                            Submit
                         </button>,
                     ]}
                 >
@@ -266,7 +266,9 @@ className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium'>
                         }} className='border mr-4 rounded-md bg-white px-4 py-2' >
                             Cancel
                         </button>,
-                        <button key="submit" type="primary" className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium' onClick={handleUploadImage}>
+                        <button key="submit" type="primary" className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium'
+                        // onClick={handleUploadImage}
+                            >
                             Submit
                         </button>,
                     ]}
