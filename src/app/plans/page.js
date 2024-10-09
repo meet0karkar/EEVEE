@@ -237,7 +237,7 @@ const Page = () => {
                         </button>,
                         <button key="submit" type="primary" onClick={ () => alert("success")           }
 className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium'>
-                            Submit
+                            Submit2
                         </button>,
                     ]}
                 >
