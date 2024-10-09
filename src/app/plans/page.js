@@ -235,7 +235,7 @@ const Page = () => {
                         <button key="back" onClick={() => setModalOpen(false)} className='border mr-4 rounded-md bg-white px-4 py-2' >
                             Cancel
                         </button>,
-                        <button key="submit" type="primary" onClick={ () => alert("success")           }
+                        <button key="submit" type="primary" onClick={amountFormik.handleSubmit           }
 className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium'>
                             Submit
                         </button>,
