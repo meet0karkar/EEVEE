@@ -107,7 +107,7 @@ const Page = () => {
                 const row = data.data?.map((val) => {
                     return {
                         id: val?._id,
-                        startDate: val?.startDate || "-",
+                        startDate: val?.startDate || "-", 
                         endDate: val?.endDate,
                         totalAmountPayable: val?.totalAmountPayable,
                         amount: val?.amount,
