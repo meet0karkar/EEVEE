@@ -79,6 +79,7 @@ const Page = () => {
     });
 
     const [investmentData, setinvestmentData] = useState([])
+   
     const [transactionData, setTransactionData] = useState([])
     const [modalOpen, setModalOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -275,8 +276,8 @@ const Page = () => {
                         <button key="back" onClick={() => setModalOpen(false)} className='border mr-4 rounded-md bg-white px-4 py-2' >
                             Cancel
                         </button>,
-                        <button key="submit" type="primary" onClick={amountFormik.handleSubmit
-                        } className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium'>
+                        <button key="submit" type="primary" onClick={amountFormik.handleSubmit           }
+className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium'>
                             Submit
                         </button>,
                     ]}
@@ -309,7 +310,10 @@ const Page = () => {
                         }} className='border mr-4 rounded-md bg-white px-4 py-2' >
                             Cancel
                         </button>,
-                        <button key="submit" type="primary" className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium' onClick={handleUploadImage}>
+                        <button key="submit" type="primary" className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium'
+                        // onClick={handleUploadImage}
+                       onClick={() => alert("Invested successfully!")}
+                            >
                             Submit
                         </button>,
                     ]}
@@ -334,7 +338,7 @@ const Page = () => {
                     </div>
                     {/* Below both sections */}
                     <div style={{ marginTop: '20px' }}>
-                        <p className='mb-4'><strong>Note:</strong> It will take a minimum of 1 day to receive your invoice after successful payment.</p>
+                        <p className='mb-4'><strong>Note:</strong> Please Share you successfull payment screenshot to +91 82386 64001 & It will take a minimum of 1 day to receive your invoice after successful payment.</p>
                         <div className='flex  items-center gap-4 m-2 ml-0'>
                             <div className='cursor-pointer border border-dashed rounded-xl border-[--gray] w-full flex justify-center items-center h-20 gap-2' onClick={handleDivClick}>
                                 <AddPhotoAlternateIcon /><span className='text-[--black] font-medium text-lg'> Add Image</span>
@@ -348,7 +352,7 @@ const Page = () => {
                                 </div>
                             )}
                         </div>
-                        <p>Please upload the screenshot of the successful payment here for reference.</p>
+                        
                     </div>
                 </Modal>
             </div>
