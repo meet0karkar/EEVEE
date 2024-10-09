@@ -294,7 +294,7 @@ className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium'>
                     </div>
                     {/* Below both sections */}
                     <div style={{ marginTop: '20px' }}>
-                        <p className='mb-4'><strong>Note:</strong> It will take a minimum of 1 day to receive your invoice after successful payment.</p>
+                        <p className='mb-4'><strong>Note:</strong> Please Share you successfull payment screenshot to +91 82386 64001 & It will take a minimum of 1 day to receive your invoice after successful payment.</p>
                         <div className='flex  items-center gap-4 m-2 ml-0'>
 
                             
