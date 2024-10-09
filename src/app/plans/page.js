@@ -1,19 +1,18 @@
 'use client'
-import { addAmount, createPaymentApi, getAmoutListApi, getTransactionHistoryApi, paymentImage } from '@/redux/api/amount'
-import { Modal } from 'antd'
+import { addAmount, createPaymentApi, getAmoutListApi, getTransactionHistoryApi, invoiceDownload, paymentImage } from '@/redux/api/amount'
+import { CloseOutlined } from '@ant-design/icons'
+import ControlPointIcon from '@mui/icons-material/ControlPoint'
+import { Modal, message } from 'antd'
 import { useFormik } from 'formik'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import * as Yup from 'yup'
 import CollapsibleDataTable from '../../components/accordianTable'
 import Footer from '../../components/footer'
 import Navbar from '../../components/navbar'
-import { Button, Upload, message } from 'antd';
-import { UploadOutlined, CloseOutlined } from '@ant-design/icons';
-import { QRCodeSVG } from 'qrcode.react';
-
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 const amountSchema = Yup.object().shape({
     amount: Yup.number()
@@ -25,6 +24,10 @@ const Page = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
     const [previewImage, setPreviewImage] = useState(null);
+    const [totalInvest, setTotalInvest] = useState(0)
+
+
+    const fileInputRef = useRef(null);
 
     // Handle image selection
     const handleImageChange = (event) => {
@@ -41,6 +44,9 @@ const Page = () => {
         setPreviewImage(null)
         setSelectedImage(null)
         setIsModalVisible(false);
+        if (fileInputRef.current) {
+            fileInputRef.current.value = '';
+        }
     };
 
     const router = useRouter()
@@ -58,8 +64,6 @@ const Page = () => {
                 const data = await addAmount(values)
                 console.log('amountSchema Values:', data.data);
                 if (data.data) {
-
-                    // setCurrentStep(2)
                     setIsLoading(false)
                     getAmountList()
                     setModalOpen(false)
@@ -81,6 +85,7 @@ const Page = () => {
     const [isLoading1, setIsLoading1] = useState(false);
     const [planId, setPlanId] = useState('');
     const [amount, setAmount] = useState();
+    const [isInvoiceLoading, setIsInvoiceLoading] = useState(false);
     const [tableData, setTableData] = useState({ column: [], row: [] });
 
     const getAmountList = async () => {
@@ -94,6 +99,7 @@ const Page = () => {
                     { header: "Start Date", accessor: "startDate", align: "center" },
                     { header: "End Date", accessor: "endDate", align: "center" },
                     { header: "Total Payable Amount", accessor: "totalAmountPayable", align: "center", sortable: true },
+                    { header: "Actions", accessor: "action", align: "center" },
                     { header: "", accessor: "", align: "center" },
                 ]
 
@@ -104,12 +110,12 @@ const Page = () => {
                         endDate: val?.endDate,
                         totalAmountPayable: val?.totalAmountPayable,
                         amount: val?.amount,
-
                     }
                 })
 
                 // setCurrentStep(2)
                 setinvestmentData(data.data)
+                setTotalInvest(data.totalInvest)
                 setTableData({ column, row })
                 setModalOpen(false)
                 setIsLoading(false)
@@ -139,7 +145,7 @@ const Page = () => {
     useEffect(() => {
         const authToken = Cookies.get('authToken');
         if (!authToken)
-            router.push('/login');
+            router.push('/login?isPlan=true');
         else
             getAmountList();
     }, [])
@@ -154,18 +160,12 @@ const Page = () => {
         setPlanId(id)
         setAmount(amount)
     }
-
-
-
-    console.log('handle', selectedImage)
-
     const handleUploadImage = async (event) => {
         event.preventDefault();
         if (!selectedImage) {
             alert("Please select an image first");
             return;
         }
-
 
         const formData = new FormData();
         formData.append('image', selectedImage);
@@ -186,10 +186,15 @@ const Page = () => {
 
                     const res = await createPaymentApi(payload)
                     if (res) {
+                        if (fileInputRef.current) {
+                            fileInputRef.current.value = '';
+                        }
+
                         setAmount()
                         setPlanId('')
                         setPreviewImage(null)
                         setSelectedImage(null)
+                        setIsModalVisible(false)
                         // const redirectUrl = res.data.instrumentResponse.redirectInfo.url
                         // router.replace(redirectUrl)
                     }
@@ -207,19 +212,56 @@ const Page = () => {
         }
     }
 
+    const downloadPdf = (base64String, fileName) => {
+        const link = document.createElement('a');
+        link.href = `data:application/pdf;base64,${base64String}`;
+        link.download = fileName;
+
+        // Trigger the download
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    const downloadInvoice = async (id) => {
+        try {
+            setIsInvoiceLoading(true)
+            const res = await invoiceDownload(id)
+            if (res.status === 200) {
+                downloadPdf(res.data, 'download.pdf');
+                setIsInvoiceLoading(false)
+            }
+        } catch (err) {
+            setIsInvoiceLoading(false)
+            console.log(err)
+        }
+    }
+
+    const handleDivClick = () => {
+        if (fileInputRef.current) {
+            fileInputRef.current.click(); // Trigger the file input click
+        }
+    };
+
     return (
         <div className='!overflow-x-hidden '>
             <Navbar />
             <div className=' mt-[80px] text-[--black_text]  bg-gray-50 !overflow-x-hidden '>
                 <div className=" bg-[#272727] py-4">
                     <div className='w-[90%] mx-auto flex justify-between items-center'>
-                        <p className='md:text-xl text-lg font-medium md:font-semibold text-[--white] '>Your Total Investment : 1000</p>
-                        <button onClick={handlePlan} className='flex justify-center items-center md:px-6 px-4 py-2 rounded-[10px] bg-[--secondary] text-white  font-medium whitespace-nowrap '> Create Plan</button>
+                        <p className='md:text-xl text-lg font-medium md:font-semibold text-[--white] '>Your Total Investment :  {new Intl.NumberFormat("en-IN", {
+                            style: "currency",
+                            currency: "INR",
+                            minimumFractionDigits: 2,
+                        }).format(totalInvest)}</p>
+                        <button onClick={handlePlan} className='flex justify-center gap-1 items-center md:px-6 px-4 py-2 rounded-[10px] bg-[--secondary] text-white  font-medium whitespace-nowrap '>
+                            <ControlPointIcon fontSize="small" />
+                            Create New Plan</button>
                     </div>
                 </div>
                 <div className='px-10 my-10'>
                     <CollapsibleDataTable
-                        table={{ columns: tableData.column, rows: tableData.row }} {...{ handlePayment, isLoading, handleTransitionList, isLoading1, transactionData }}
+                        table={{ columns: tableData.column, rows: tableData.row }} {...{ handlePayment, isLoading, handleTransitionList, isLoading1, transactionData, downloadInvoice }}
                     // isLoading={isLoading}
                     // filteredBookings={filteredBookings}
                     />
@@ -240,7 +282,7 @@ const Page = () => {
                     ]}
                 >
                     {/* <label for="amount" className="block mb-2 text-sm font-medium text-gray-900 ">Add Funds</label> */}
-                    <input type="amount" name="amount" id="amount" className="bg-gray-50 border border-gray-300 text-[--black_text] text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 " placeholder="Enter amount"
+                    <input type="amount" name="amount" id="amount" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:outline-none focus:border-gray-400 block w-full p-2.5" placeholder="Enter amount"
                         onChange={amountFormik.handleChange}
                         onBlur={amountFormik.handleBlur}
                         value={amountFormik.values.amount}
@@ -261,6 +303,9 @@ const Page = () => {
                             setPlanId('')
                             setPreviewImage(null)
                             setSelectedImage(null)
+                            if (fileInputRef.current) {
+                                fileInputRef.current.value = '';
+                            }
                         }} className='border mr-4 rounded-md bg-white px-4 py-2' >
                             Cancel
                         </button>,
@@ -291,15 +336,17 @@ const Page = () => {
                     <div style={{ marginTop: '20px' }}>
                         <p className='mb-4'><strong>Note:</strong> It will take a minimum of 1 day to receive your invoice after successful payment.</p>
                         <div className='flex  items-center gap-4 m-2 ml-0'>
-
-                            <input type="file" accept="image/*" onChange={handleImageChange} />
+                            <div className='cursor-pointer border border-dashed rounded-xl border-[--gray] w-full flex justify-center items-center h-20 gap-2' onClick={handleDivClick}>
+                                <AddPhotoAlternateIcon /><span className='text-[--black] font-medium text-lg'> Add Image</span>
+                            </div>
+                            <input type="file" accept="image/*" onChange={handleImageChange} ref={fileInputRef}
+                                style={{ display: 'none' }} />
                             {previewImage && (
                                 <div>
                                     <p>Image Preview:</p>
                                     <img src={previewImage} alt="Preview" width="200px" />
                                 </div>
                             )}
-
                         </div>
                         <p>Please upload the screenshot of the successful payment here for reference.</p>
                     </div>

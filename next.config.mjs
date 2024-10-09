@@ -4,7 +4,15 @@ const nextConfig = {
         domains: ['localhost', 'eeveegoldsavings.com'],
         unoptimized: true,
     },
-     output: 'export'
+    output: 'export',
+    async rewrites() {
+        return [
+            {
+                source: '/api/:path*',
+                destination: 'https://api.eeveegoldsavings.com:3000/:path*' // Proxy to Backend
+            }
+        ]
+    }
 };
 
 export default nextConfig;

@@ -16,16 +16,19 @@ import NorthIcon from '@mui/icons-material/North';
 import SouthIcon from '@mui/icons-material/South';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 import Image from 'next/image';
+import DownloadIcon from '@mui/icons-material/Download';
 
-const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transactionData }) => {
+const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transactionData,downloadInvoice }) => {
     const [open, setOpen] = useState(false);
 
     const column = [
         { header: "Transaction", accessor: "transaction", align: "left", },
         { header: "Amount", accessor: "amount", align: "center" },
         { header: "Payment Type", accessor: "paymentType", align: "center" },
-        { header: "Transaction Id", accessor: "transactionId", align: "center"},
+        { header: "Transaction Id", accessor: "transactionId", align: "center" },
         { header: "Date", accessor: "date", align: "center" },
+        { header: "Status", accessor: "status", align: "center" },
+        { header: "Verified", accessor: "verified", align: "center" },
     ]
 
     return (
@@ -44,7 +47,17 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
                     currency: "INR",
                     minimumFractionDigits: 2,
                 }).format(row.totalAmountPayable)}</TableCell>
-                
+                <TableCell align="center">
+                    <div className='flex justify-center gap-2 items-center'>
+                        <button className='px-4 py-1 rounded-md border border-dashed border-[--secondary] tracking-wide  font-medium ' onClick={() => {
+                            handlePayment(row?.id, row?.amount)
+                        }}><span className=' '>Invest More</span></button>
+                         <button className='px-4 py-1 gap- rounded-md border border-[--secondary]   bg-[--secondary]  tracking-wide text-white font-medium ' onClick={() => {
+                            downloadInvoice(row?.id)
+                        }}><DownloadIcon fontSize='small' sx={{mr:'2'}}/><span className=' '>Invoice</span></button>
+                    </div>
+                </TableCell>
+
                 <TableCell align="center " className='w-5' >
                     <IconButton
                         aria-label="expand row"
@@ -68,19 +81,13 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
 
             </TableRow>
             <TableRow >
-                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12} >
+                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12} >
                     <Collapse in={open} timeout="auto" style={{ width: "100%" }} colSpan={12}>
                         <Box sx={{ margin: 2 }}>
                             <div className="h-[90%] w-[100%]  px-2 md:px-4 lg:px-10 space-y-6 !mt-6">
-                                <div className='flex justify-end gap-2 items-center'>
-                                   
-                                    <button className='px-6 py-2 rounded-lg border border-[--secondary]   bg-[--secondary]  tracking-wide text-white font-semibold ' onClick={() => {
-                                        handlePayment(row?.id, row?.amount)
-                                    }}><span className=' '>Invest More</span></button>
-                                </div>
                                 <div className=" border-2  px-3 py-4 rounded-lg">
                                     <div className="px-2 py-2 !w-full">
-                                        <p className=' text-normal font-semibold tracking-wide mb-6'>Transaction History</p>
+                                        <p className=' text-lg font-semibold tracking-wide ml-4'>Transaction History</p>
                                         <TableHead className=' !w-full'>
                                             <TableRow className=''>
                                                 {column.map((column, index) => (
@@ -93,23 +100,25 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
                                                 ))}
                                             </TableRow>
                                         </TableHead>
-                                        {transactionData.length>0 ? transactionData.map((item,index) => {
+                                        {transactionData.length > 0 ? transactionData.map((item, index) => {
                                             return (
-                                                <TableBody className='w-full'  key={index}>
+                                                <TableBody className='w-full' key={index}>
                                                     <TableRow sx={{ '& > *': { borderBottom: 'unset' } }} className='w-full' >
-                                                        <TableCell align="left" className='whitespace-nowrap' >Buy</TableCell>
-                                                        <TableCell align="center" className='w-full whitespace-nowrap' >{new Intl.NumberFormat("en-IN", {
+                                                        <TableCell align="left" sx={{ width: '10%' }} className='whitespace-nowrap' >Buy</TableCell>
+                                                        <TableCell align="center" sx={{ width: '20%' }} className='w-full whitespace-nowrap' >{new Intl.NumberFormat("en-IN", {
                                                             style: "currency",
                                                             currency: "INR",
                                                             minimumFractionDigits: 2,
                                                         }).format((item.amount))}</TableCell>
-                                                        <TableCell align="center" className='w-full whitespace-nowrap' >{item.paymentMethod}</TableCell>
-                                                        <TableCell align="center" className='w-full whitespace-nowrap' >{item.transactionId}</TableCell>
-                                                        <TableCell align="center" className='w-full whitespace-nowrap' >{new Date(item?.transactionDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</TableCell>
+                                                        <TableCell align="center" sx={{ width: '15%' }} className='w-full whitespace-nowrap' >{item.paymentMethod ?? '-'}</TableCell>
+                                                        <TableCell align="center"  sx={{ width: '20%' }} className='w-full whitespace-nowrap' >{item.transactionId ?? '-'}</TableCell>
+                                                        <TableCell align="center" sx={{ width: '15%' }} className='w-full whitespace-nowrap' >{new Date(item?.transactionDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</TableCell>
+                                                        <TableCell align="center" sx={{ width: '10%' }} className='w-full whitespace-nowrap' >{item.status ?? 'Done'}</TableCell>
+                                                        <TableCell align="center" sx={{ width: '10%' }} className='w-full whitespace-nowrap' >{item.isVerified ? "True":"False"}</TableCell>
                                                     </TableRow>
                                                 </TableBody>
                                             )
-                                        }):<p className='w-full text-center my-4'>No results</p>}
+                                        }) : <p className='w-full text-center my-4'>No results</p>}
 
                                     </div>
                                 </div>
@@ -122,7 +131,7 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
     );
 }
 
-const CollapsibleDataTable = ({ table, isLoading, handlePayment, handleTransitionList, isLoading1, transactionData }) => {
+const CollapsibleDataTable = ({ table, isLoading, handlePayment, handleTransitionList, isLoading1, transactionData ,downloadInvoice}) => {
     const { columns, rows } = table
     const [hoveredColumn, setHoveredColumn] = useState(null);
     const [sortData, setSortData] = useState({ column: null, direction: 'asc' });
@@ -139,7 +148,7 @@ const CollapsibleDataTable = ({ table, isLoading, handlePayment, handleTransitio
         {
             type: "dsc",
             icon: <SouthIcon fontSize="small" className="text-[--white-color]" />
-        },
+        }
     ]
 
     const sortDataHandler = (columnAccessor) => {
@@ -183,8 +192,8 @@ const CollapsibleDataTable = ({ table, isLoading, handlePayment, handleTransitio
                                         key={index}
                                         align={column.align}
                                         className="!text-[0.875rem] lg:!text-[14px] !tracking-wide !font-bold !bg-[#27272780] !text-[--white] "
-                                      
-                                        >
+
+                                    >
                                         {
                                             column.header
                                         }
@@ -196,7 +205,7 @@ const CollapsibleDataTable = ({ table, isLoading, handlePayment, handleTransitio
                             ?
                             (<TableBody>
                                 {sortedRows.map((val, index) => (
-                                    <Row key={index} row={val} handlePayment={handlePayment} handleTransitionList={handleTransitionList} isLoading1={isLoading1} transactionData={transactionData} />
+                                    <Row key={index} row={val} handlePayment={handlePayment} handleTransitionList={handleTransitionList} isLoading1={isLoading1} transactionData={transactionData} downloadInvoice={downloadInvoice}/>
                                 ))}
                             </TableBody>)
 
@@ -212,8 +221,8 @@ const CollapsibleDataTable = ({ table, isLoading, handlePayment, handleTransitio
                                 </TableRow>
                             </TableBody>
                         }
-                    </Table >
-                </TableContainer >
+                    </Table>
+                </TableContainer>
             }</>
     );
 }

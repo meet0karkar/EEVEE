@@ -3,8 +3,9 @@ import Cookies from 'js-cookie'; // To handle cookies
 
 
 const api = axios.create({
-  baseURL: 'http://13.126.98.206:3000', 
-  timeout: 5000, 
+  // baseURL: 'http://13.126.98.206:3000', 
+  baseURL: 'https://api.eeveegoldsavings.com:3000',
+  timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -12,7 +13,7 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    const token=Cookies.get('authToken');
+    const token = Cookies.get('authToken');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
