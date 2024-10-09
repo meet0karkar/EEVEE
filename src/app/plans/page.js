@@ -294,16 +294,10 @@ const Page = () => {
                         <p className='mb-4'><strong>Note:</strong> It will take a minimum of 1 day to receive your invoice after successful payment.</p>
                         <div className='flex  items-center gap-4 m-2 ml-0'>
 
-                            // <input type="file" accept="image/*" onChange={handleImageChange} />
-                            // {previewImage && (
-                            //     <div>
-                            //         <p>Image Preview:</p>
-                            //         <img src={previewImage} alt="Preview" width="200px" />
-                            //     </div>
-                            // )}
+                            
 
                         </div>
-                        // <p>Please upload the screenshot of the successful payment here for reference.</p>
+                        
                     </div>
                 </Modal>
             </div>
