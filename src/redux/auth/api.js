@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'; // To handle cookies
 
 const api = axios.create({
   // baseURL: 'https://8xytgm8g2d.execute-api.ap-south-1.amazonaws.com', 
-  baseURL: 'http://13.126.98.206:3000', 
+  baseURL: 'http://api.eeveegoldsavings.com:3000/', 
   timeout: 5000, 
   headers: {
     'Content-Type': 'application/json',
