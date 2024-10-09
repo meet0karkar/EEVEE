@@ -9,7 +9,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://13.126.98.206:3000/:path*' // Proxy to Backend
+        destination: 'http://api.eeveegoldsavings.com:3000/:path*' // Proxy to Backend
       }
     ]
   }
