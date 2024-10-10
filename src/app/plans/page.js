@@ -107,7 +107,7 @@ const Page = () => {
                 const row = data.data?.map((val) => {
                     return {
                         id: val?._id,
-                        startDate: val?.startDate || "-",
+                        startDate: val?.startDate || "-", 
                         endDate: val?.endDate,
                         totalAmountPayable: val?.totalAmountPayable,
                         amount: val?.amount,
@@ -311,8 +311,8 @@ const Page = () => {
                             Cancel
                         </button>,
                         <button key="submit" type="primary" className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium'
-                            onClick={handleUploadImage}
-                        >
+                        onClick={handleUploadImage}
+                            >
                             Submit
                         </button>,
                     ]}
