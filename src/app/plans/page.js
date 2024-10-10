@@ -311,8 +311,7 @@ className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium'>
                             Cancel
                         </button>,
                         <button key="submit" type="primary" className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium'
-                        // onClick={handleUploadImage}
-                       onClick={() => alert("Invested successfully!")}
+                        onClick={handleUploadImage}
                             >
                             Submit
                         </button>,
