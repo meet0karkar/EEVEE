@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux'
 import * as Yup from 'yup'
 import CollapsibleDataTable from '../../components/accordianTable'
 import Footer from '../../components/footer'
-import Navbar from '../../components/navbar'
+import Navbar from '../../components/navbar' 
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 const amountSchema = Yup.object().shape({
