@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import ClientProvider from "./clientProvider";
 import "./globals.css";
 import Footer from '../components/footer'
+import Head from "next/head";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -19,17 +20,26 @@ const geistMono = localFont({
 export const metadata = {
   title: "EEVEE Gold",
   description: "Creating The Future With EEVEE Savings.",
+  icons: {
+    icon: [
+      { rel: "icon", url: "/favicon-32x32.png", sizes: "32x32" },
+      { rel: "icon", url: "/favicon-16x16.png", sizes: "16x16" },
+    ],
+    appleTouchIcon: "/apple-touch-icon.png",
+    manifest: "/site.webmanifest",
+  },
 };
 
 export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[--black]`}
+        className={`bg-[--black]`}
       >
-         <ClientProvider>{children}</ClientProvider>
-        
+        <ClientProvider>{children}</ClientProvider>
+
       </body>
     </html>
   );

@@ -149,7 +149,7 @@ export default function AboutUs() {
                     </div>
 
                     {/* Our features */}
-                    <div className="pb-16">
+                    <div className="">
                         <Fade direction='up' triggerOnce cascade delay={300}>
                             <h1 className="text-center text-[28px] md:text-[32px] font-semibold text-[--white] my-4">Let&lsquo;s Get To Know EEVEE`&lsquo;s Features</h1>
                         </Fade>
@@ -170,6 +170,64 @@ export default function AboutUs() {
                                     </div>
                                 )
                             })}
+                        </div>
+                    </div>
+
+                       {/* Why Choose Us Section */}
+                       <div className='pb-16'>
+                        <Fade direction='up' triggerOnce cascade delay={300}>
+                            <p className='text-[28px] md:text-[32px] font-semibold text-[--white] text-center '>Our Stores</p>
+                        </Fade>
+
+                        <div className='flex flex-col space-y-5 '>
+
+                       
+                        <div className='grid grid-cols-1 md:grid-cols-2  space-y-4 md:space-y-0  md:space-x-6 lg:space-x-8  pt-10'>
+                            <Fade direction='up' triggerOnce cascade delay={400} className='border border-slate-700 rounded-[12px] p-2  transition ease-in-out delay-150 hover:scale-105  cursor-pointer duration-300'>
+                                <div className='flex flex-col space-y-4'>
+                                    <Image src="/store1.jpg" width={100} height={100} className='h-[400px] w-full rounded-[6px] mx-auto  object-contain bg-center' />
+                                </div>
+                            </Fade>
+                            <Fade direction='up' triggerOnce cascade delay={400} className='border border-slate-700 rounded-[12px] p-2 transition ease-in-out delay-150 hover:scale-105  cursor-pointer duration-300 ' >
+                                <div className='flex flex-col items-center space-y-4 p-4 rounded-[6px] h-full w-full' style={{background:"linear-gradient(180deg, #1e1e1e, #121212)"}}>
+                                    <h1 className='text-xl text-center tracking-wider text-[#ededed] font-medium'>EEVEE Silver Jewellery Surat</h1>
+                                   <p className='text-center !mt-8'><span className='font-semibold text-lg'>Address</span> : Bhakti Arcade, Pramukh Park Soc, 8-9, Satellite Rd, Near Mahadev Chowk, Mota Varachha, Surat, Gujarat, 394101</p>
+                                   <p className=''><span className='font-semibold text-lg'>Hours</span>: Mon-Sun: 9:00am-7:30pm</p>
+                                   <Link href="https://maps.app.goo.gl/59vwWpFmMw9FUVxQ9" target='_blank'  className='border border-slate-500 bg-[#0a0a0a] py-2 px-4 rounded-lg tracking-wide hover:bg-slate-500 !mt-10 transition ease-in-out delay-150 duration-300' >Get Directions</Link>
+                                </div>
+                            </Fade>
+                        </div>
+                        <div className='grid grid-cols-1 md:grid-cols-2  space-y-4 md:space-y-0  md:space-x-6 lg:space-x-8  pt-10'>
+                            <Fade direction='up' triggerOnce cascade delay={400} className='border border-slate-700 rounded-[12px] p-2  transition ease-in-out delay-150 hover:scale-105  cursor-pointer duration-300'>
+                                <div className='flex flex-col space-y-4'>
+                                    <Image src="/store2.jpg" width={100} height={100} className='h-[400px] w-full rounded-[6px] mx-auto  object-contain bg-center' />
+                                </div>
+                            </Fade>
+                            <Fade direction='up' triggerOnce cascade delay={400} className='border border-slate-700 rounded-[12px] p-2 transition ease-in-out delay-150 hover:scale-105  cursor-pointer duration-300 ' >
+                                <div className='flex flex-col items-center space-y-4 p-4 rounded-[6px] h-full w-full' style={{background:"linear-gradient(180deg, #1e1e1e, #121212)"}}>
+                                    <h1 className='text-xl text-center tracking-wider text-[#ededed] font-medium'>EEVEE Silver Jewellery Ahmedabad</h1>
+                                   <p className='text-center !mt-8'><span className='font-semibold text-lg'>Address</span> : 3, Shreem heights, New India Colony Rd, beside sai gold residency, opposite kelavani dham, Ankur Chokadi, New India Colony, Nikol, Ahmedabad, Gujarat, 3823501</p>
+                                   <p className=''><span className='font-semibold text-lg'>Hours</span>: Mon-Sun: 9:00am-7:30pm</p>
+                                   <Link href="https://maps.app.goo.gl/i3YBoMuMTQZvEGSr8" target='_blank'  className='border border-slate-500 bg-[#0a0a0a] py-2 px-4 rounded-lg tracking-wide hover:bg-slate-500 !mt-10 transition ease-in-out delay-150 duration-300' >Get Directions</Link>
+                                </div>
+                            </Fade>
+                        </div>
+                        <div className='grid grid-cols-1 md:grid-cols-2  space-y-4 md:space-y-0  md:space-x-6 lg:space-x-8  pt-10'>
+                            <Fade direction='up' triggerOnce cascade delay={400} className='border border-slate-700 rounded-[12px] p-2  transition ease-in-out delay-150 hover:scale-105  cursor-pointer duration-300'>
+                                <div className='flex flex-col space-y-4'>
+                                    <Image src="/store3.jpg" width={100} height={100} className='h-[400px] w-full rounded-[6px] mx-auto  object-contain bg-center' />
+                                </div>
+                            </Fade>
+                            <Fade direction='up' triggerOnce cascade delay={400} className='border border-slate-700 rounded-[12px] p-2 transition ease-in-out delay-150 hover:scale-105  cursor-pointer duration-300 ' >
+                                <div className='flex flex-col items-center space-y-4 p-4 rounded-[6px] h-full w-full' style={{background:"linear-gradient(180deg, #1e1e1e, #121212)"}}>
+                                    <h1 className='text-xl text-center tracking-wider text-[#ededed] font-medium'>Ved Arcade Mall Ahmedabad</h1>
+                                   <p className='text-center !mt-8'><span className='font-semibold text-lg'>Address</span> :216, Ved Arcade Mall Nr. Vastral Metro Station, Ring Road, Vastral, Ahmedabad - 382350</p>
+                                   <p className=''><span className='font-semibold text-lg'>Hours</span>: Mon-Sun: 9:00am-7:30pm</p>
+                                   <Link href="https://maps.app.goo.gl/pZjY98uS2kmqNTRAA" target='_blank'  className='border border-slate-500 bg-[#0a0a0a] py-2 px-4 rounded-lg tracking-wide hover:bg-slate-500 !mt-10 transition ease-in-out delay-150 duration-300' >Get Directions</Link>
+                                </div>
+                            </Fade>
+                        </div>
+                       
                         </div>
                     </div>
 
