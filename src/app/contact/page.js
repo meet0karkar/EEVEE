@@ -15,9 +15,10 @@ const formSchema = Yup.object().shape({
     email: Yup.string()
         .email("Invalid email address")
         .required("Email is required"),
-    phone: Yup.string()
-        .matches(/^[0-9]+$/, "Phone number must contain only digits")
-        .required("Phone number is required"),
+   phone: Yup.string()
+    .matches(/^[0-9]+$/, "Phone number must contain only digits")
+    .length(10, "Phone number must be exactly 10 digits")
+    .required("Phone number is required"),
     name: Yup.string()
         .required("Email is required"),
     subject: Yup.string()
