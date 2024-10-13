@@ -41,7 +41,7 @@ const Page = () => {
             console.log("Login Values:", values);
             try {
                 const data = await contactDetaisApi(values);
-                if(res.status===201){
+                if(data.status===201){
                     message.success('Contact Details Submitted Successfully!')
                 }
                 resetForm();
