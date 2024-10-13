@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie';
 import { Fade } from "react-awesome-reveal";
 import { useFormik } from "formik";
+import { Modal, message } from 'antd'
 import * as Yup from "yup";
 import { contactDetaisApi } from '@/redux/api/amount';
 
