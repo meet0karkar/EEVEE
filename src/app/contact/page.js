@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie';
 import { Fade } from "react-awesome-reveal";
 import { useFormik } from "formik";
+import { Modal, message } from 'antd'
 import * as Yup from "yup";
 import { contactDetaisApi } from '@/redux/api/amount';
 import { CircularProgress } from '@mui/material';
@@ -16,10 +17,10 @@ const formSchema = Yup.object().shape({
     email: Yup.string()
         .email("Invalid email address")
         .required("Email is required"),
-    phone: Yup.string()
-        .matches(/^[0-9]+$/, "Phone number must contain only digits")
-        .length(10, "Phone number must be exactly 10 digits")
-        .required("Phone number is required"),
+   phone: Yup.string()
+    .matches(/^[0-9]+$/, "Phone number must contain only digits")
+    .length(10, "Phone number must be exactly 10 digits")
+    .required("Phone number is required"),
     name: Yup.string()
         .required("Email is required"),
     subject: Yup.string()
@@ -43,6 +44,9 @@ const Page = () => {
             setIsLoading(true)
             try {
                 const data = await contactDetaisApi(values);
+                if(data.status===201){
+                    message.success('Contact Details Submitted Successfully!')
+                }
                 resetForm();
                 setIsLoading(false)
             } catch (errors) {
