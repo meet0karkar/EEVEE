@@ -13,10 +13,13 @@ import CollapsibleDataTable from '../../components/accordianTable'
 import Footer from '../../components/footer'
 import Navbar from '../../components/navbar'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import { CircularProgress } from '@mui/material'
 
 const amountSchema = Yup.object().shape({
-    amount: Yup.number()
-        .required("Amount is required"),
+  amount: Yup.number()
+        .typeError("Amount must be a number") 
+        .required("Amount is required")
+        .positive("Amount must be a positive number")
 });
 
 
@@ -25,6 +28,7 @@ const Page = () => {
     const [selectedImage, setSelectedImage] = useState(null);
     const [previewImage, setPreviewImage] = useState(null);
     const [totalInvest, setTotalInvest] = useState(0)
+    const [invoiceId, setInvoiceId] = useState('')
 
 
     const fileInputRef = useRef(null);
@@ -87,6 +91,8 @@ const Page = () => {
     const [planId, setPlanId] = useState('');
     const [amount, setAmount] = useState();
     const [isInvoiceLoading, setIsInvoiceLoading] = useState(false);
+    const [isImageLoading, setIsimageLoading] = useState(false);
+    const [isPlanLoading, setIsPlanLoading] = useState(false);
     const [tableData, setTableData] = useState({ column: [], row: [] });
 
     const getAmountList = async () => {
@@ -107,7 +113,7 @@ const Page = () => {
                 const row = data.data?.map((val) => {
                     return {
                         id: val?._id,
-                        startDate: val?.startDate || "-", 
+                        startDate: val?.startDate || "-",
                         endDate: val?.endDate,
                         totalAmountPayable: val?.totalAmountPayable,
                         amount: val?.amount,
@@ -167,6 +173,7 @@ const Page = () => {
             alert("Please select an image first");
             return;
         }
+        setIsimageLoading(true)
 
         const formData = new FormData();
         formData.append('image', selectedImage);
@@ -199,15 +206,22 @@ const Page = () => {
                         // const redirectUrl = res.data.instrumentResponse.redirectInfo.url
                         // router.replace(redirectUrl)
                     }
+                    setIsimageLoading(false)
                 }
                 catch (err) {
+                    setIsimageLoading(false)
+
                     console.log(err)
                 }
                 message.success('Payment image uploaded successfully.');
             } else {
+                setIsimageLoading(false)
+
                 message.error('Failed to upload payment image.');
             }
         } catch (error) {
+            setIsimageLoading(false)
+
             console.error('Error uploading image:', error);
             message.error('Error uploading payment image.');
         }
@@ -227,6 +241,7 @@ const Page = () => {
     const downloadInvoice = async (id) => {
         try {
             setIsInvoiceLoading(true)
+            setInvoiceId(id)
             const res = await invoiceDownload(id)
             if (res.status === 200) {
                 downloadPdf(res.data, 'download.pdf');
@@ -262,7 +277,7 @@ const Page = () => {
                 </div>
                 <div className='px-10 my-10'>
                     <CollapsibleDataTable
-                        table={{ columns: tableData.column, rows: tableData.row }} {...{ handlePayment, isLoading, handleTransitionList, isLoading1, transactionData, downloadInvoice }}
+                        table={{ columns: tableData.column, rows: tableData.row }} {...{ handlePayment, isLoading, handleTransitionList, isLoading1, transactionData, downloadInvoice, isInvoiceLoading }} invoiceId={invoiceId}
                     // isLoading={isLoading}
                     // filteredBookings={filteredBookings}
                     />
@@ -278,7 +293,7 @@ const Page = () => {
                         </button>,
                         <button key="submit" type="primary" onClick={amountFormik.handleSubmit}
                             className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium'>
-                            Submit
+                            {isLoading && <CircularProgress size="14px" sx={{ color: "white", marginRight: "4px" }} />} Submit
                         </button>,
                     ]}
                 >
@@ -311,8 +326,10 @@ const Page = () => {
                             Cancel
                         </button>,
                         <button key="submit" type="primary" className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium'
-                        onClick={handleUploadImage}
-                            >
+                            onClick={handleUploadImage}
+                        >
+                            {
+                                isImageLoading && <CircularProgress size="14px" sx={{ color: "white", marginRight: "4px" }} />}
                             Submit
                         </button>,
                     ]}

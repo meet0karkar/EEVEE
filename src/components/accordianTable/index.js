@@ -1,6 +1,6 @@
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { CircularProgress, capitalize } from '@mui/material';
+import { CircularProgress } from '@mui/material';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -18,7 +18,7 @@ import SwapVertIcon from '@mui/icons-material/SwapVert';
 import Image from 'next/image';
 import DownloadIcon from '@mui/icons-material/Download';
 
-const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transactionData,downloadInvoice }) => {
+const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transactionData, downloadInvoice, isInvoiceLoading, invoiceId }) => {
     const [open, setOpen] = useState(false);
 
     const column = [
@@ -34,7 +34,6 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
     return (
         <>
             <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-
                 <TableCell align="left">{new Intl.NumberFormat("en-IN", {
                     style: "currency",
                     currency: "INR",
@@ -52,9 +51,17 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
                         <button className='px-4 py-1 rounded-md border border-dashed border-[--secondary] tracking-wide  font-medium ' onClick={() => {
                             handlePayment(row?.id, row?.amount)
                         }}><span className=' '>Invest More</span></button>
-                         <button className='px-4 py-1 gap- rounded-md border border-[--secondary]   bg-[--secondary]  tracking-wide text-white font-medium ' onClick={() => {
+                        <button className='px-4 py-1 rounded-md border border-[--secondary] bg-[--secondary]  tracking-wide text-white font-medium flex justify-center items-center space-x-[6px] ' onClick={() => {
                             downloadInvoice(row?.id)
-                        }}><DownloadIcon fontSize='small' sx={{mr:'2'}}/><span className=' '>Invoice</span></button>
+                        }}>
+                            {console.log('invoiceId', invoiceId)}
+                            {isInvoiceLoading && invoiceId === row?.id ? (
+                                <CircularProgress size="14px" sx={{ color: "white" }} />
+                            ) : (
+                                <DownloadIcon fontSize="small" />
+                            )}
+                            <span className=' '>Invoice</span>
+                        </button>
                     </div>
                 </TableCell>
 
@@ -111,10 +118,10 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
                                                             minimumFractionDigits: 2,
                                                         }).format((item.amount))}</TableCell>
                                                         <TableCell align="center" sx={{ width: '15%' }} className='w-full whitespace-nowrap' >{item.paymentMethod ?? '-'}</TableCell>
-                                                        <TableCell align="center"  sx={{ width: '20%' }} className='w-full whitespace-nowrap' >{item.transactionId ?? '-'}</TableCell>
+                                                        <TableCell align="center" sx={{ width: '20%' }} className='w-full whitespace-nowrap' >{item.transactionId ?? '-'}</TableCell>
                                                         <TableCell align="center" sx={{ width: '15%' }} className='w-full whitespace-nowrap' >{new Date(item?.transactionDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</TableCell>
                                                         <TableCell align="center" sx={{ width: '10%' }} className='w-full whitespace-nowrap' >{item.status ?? 'Done'}</TableCell>
-                                                        <TableCell align="center" sx={{ width: '10%' }} className='w-full whitespace-nowrap' >{item.isVerified ? "True":"False"}</TableCell>
+                                                        <TableCell align="center" sx={{ width: '10%' }} className='w-full whitespace-nowrap' >{item.isVerified ? "True" : "False"}</TableCell>
                                                     </TableRow>
                                                 </TableBody>
                                             )
@@ -131,7 +138,7 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
     );
 }
 
-const CollapsibleDataTable = ({ table, isLoading, handlePayment, handleTransitionList, isLoading1, transactionData ,downloadInvoice}) => {
+const CollapsibleDataTable = ({ isInvoiceLoading, table, isLoading, handlePayment, handleTransitionList, isLoading1, transactionData, downloadInvoice, invoiceId }) => {
     const { columns, rows } = table
     const [hoveredColumn, setHoveredColumn] = useState(null);
     const [sortData, setSortData] = useState({ column: null, direction: 'asc' });
@@ -183,7 +190,6 @@ const CollapsibleDataTable = ({ table, isLoading, handlePayment, handleTransitio
         <>
             {isLoading ? <div className='my-40 flex justify-center items-center'><CircularProgress color="secondary" /></div> :
                 <TableContainer component={Paper} className=' w-[100%] !rounded-lg  relative !rounded-b-lg !rounded-t-none'>
-
                     <Table stickyHeader aria-label="sticky table">
                         <TableHead>
                             <TableRow>
@@ -192,7 +198,6 @@ const CollapsibleDataTable = ({ table, isLoading, handlePayment, handleTransitio
                                         key={index}
                                         align={column.align}
                                         className="!text-[0.875rem] lg:!text-[14px] !tracking-wide !font-bold !bg-[#27272780] !text-[--white] "
-
                                     >
                                         {
                                             column.header
@@ -202,28 +207,32 @@ const CollapsibleDataTable = ({ table, isLoading, handlePayment, handleTransitio
                             </TableRow>
                         </TableHead>
                         {rows.length > 0
-                            ?
+                            &&
                             (<TableBody>
                                 {sortedRows.map((val, index) => (
-                                    <Row key={index} row={val} handlePayment={handlePayment} handleTransitionList={handleTransitionList} isLoading1={isLoading1} transactionData={transactionData} downloadInvoice={downloadInvoice}/>
+                                    <Row key={index} row={val} handlePayment={handlePayment} handleTransitionList={handleTransitionList} isLoading1={isLoading1} transactionData={transactionData} downloadInvoice={downloadInvoice} isInvoiceLoading={isInvoiceLoading} invoiceId={invoiceId} />
                                 ))}
                             </TableBody>)
 
-                            : <TableBody TableBody style={{ display: "flex", height: "100vh", justifyContent: "center", alignItems: "center", position: "absolute", top: 0, bottom: 0, left: 0, right: 0 }}>
-                                <TableRow >
-                                    <><div className='w-full  bg-white p-8 flex items-center justify-center flex-col'>
-                                        <Image src='/sip.svg' alt="sip" height="80" width="80" />
-                                        <p className="mt-4 text-gray-400 tracking-wider text-sm text-center">
-                                            No investment plans available at the moment. Please add a plan to get started.
-                                        </p>
-                                    </div>
-                                    </>
-                                </TableRow>
-                            </TableBody>
                         }
+
+
                     </Table>
                 </TableContainer>
-            }</>
+
+            }
+
+            {rows.length === 0 &&
+
+                <div className='w-full h-full  bg-white p-8 flex items-center justify-center flex-col'>
+                    <Image src='/sip.svg' alt="sip" height="80" width="80" />
+                    <p className="mt-4 text-gray-400 tracking-wider text-sm text-center">
+                        No investment plans available at the moment. Please add a plan to get started.
+                    </p>
+                </div>
+            }
+
+        </>
     );
 }
 

@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../components/navbar';
 import Image from 'next/image';
 import Footer from '../../components/footer'
@@ -9,6 +9,7 @@ import { Fade } from "react-awesome-reveal";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { contactDetaisApi } from '@/redux/api/amount';
+import { CircularProgress } from '@mui/material';
 
 
 const formSchema = Yup.object().shape({
@@ -17,6 +18,7 @@ const formSchema = Yup.object().shape({
         .required("Email is required"),
     phone: Yup.string()
         .matches(/^[0-9]+$/, "Phone number must contain only digits")
+        .length(10, "Phone number must be exactly 10 digits")
         .required("Phone number is required"),
     name: Yup.string()
         .required("Email is required"),
@@ -38,10 +40,13 @@ const Page = () => {
         validationSchema: formSchema,
         onSubmit: async (values, { resetForm }) => {
             console.log("Login Values:", values);
+            setIsLoading(true)
             try {
                 const data = await contactDetaisApi(values);
                 resetForm();
+                setIsLoading(false)
             } catch (errors) {
+                setIsLoading(false)
                 console.log("Errors:", errors);
             }
         },
@@ -49,7 +54,7 @@ const Page = () => {
 
     const router = useRouter()
 
-    console.log('data123', loginFormik.values)
+    const [isLoading, setIsLoading] = useState(false);
 
     return (
         <div className="overflow-x-hidden bg-[--black]  h-auto" >
@@ -177,7 +182,7 @@ const Page = () => {
                                 </div>
 
                                 <button className="animated-button bg-[--secondary] rounded-full border-none text-white font-bold text-[14px] md:text-[14px] lg:text-md xl:text-[15px] py-3 md:py-[15px] lg:py-[12px] px-8 md:px-[40px] lg:px-[35px] !mt-8 w-max">
-                                    SEND MESSAGE
+                                {isLoading && <CircularProgress size="14px" sx={{ color: "white", marginRight: "4px" }} />}  SEND MESSAGE
                                 </button>
 
                             </form>
