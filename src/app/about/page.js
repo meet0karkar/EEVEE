@@ -49,22 +49,22 @@ export default function AboutUs() {
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-4 md:space-y-0  md:space-x-6 lg:space-x-8  pt-10'>
                             <Fade direction='up' triggerOnce cascade delay={400} className='border border-slate-700 rounded-[12px] p-6 transition ease-in-out delay-150 hover:scale-105  cursor-pointer duration-300'>
                                 <div className='flex flex-col space-y-4'>
-                                    <h1 className='text-xl text-left tracking-wider text-[#ededed] font-medium'>Next Generation of Savings</h1>
+                                    <h1 className='text-xl text-left tracking-wider text-[#ededed] font-medium'>Next Generation of Buying</h1>
                                     <ol className='text-[--gray] text-sm text-justify tracking-wide list-disc pl-6 space-y-2 leading-relaxed'>
-                                        <li>Built for modern investors.</li>
-                                        <li>Offers a 16+1 Investment Reward Program.</li>
-                                        <li>After 16 consecutive months of investment, the 17th month is free.</li>
+                                        <li>Built for the modern user.</li>
+                                        <li>Offers a 16+1 Reward Program.</li>
+                                        <li>After 16 consecutive months, the 17th month is free.</li>
                                         <li>Helps customers maximize their wealth effortlessly.</li>
-                                        <li>No hidden fees, with transparent and consistent rewards</li>
+                                        <li>No hidden fees, with transparent and consistent rewards.</li>
                                         <li>Provides an intuitive dashboard to track progress.</li>
-                                        <li>Customers remain in control of their investment journey.</li>
+                                        <li>Customers remain in control of their wealth journey.</li>
                                     </ol>
                                 </div>
                             </Fade>
                             <Fade direction='up' triggerOnce cascade delay={400} className='border border-slate-700 rounded-[12px] p-6  transition ease-in-out delay-150 hover:scale-105  cursor-pointer duration-300'>
                                 <div className='flex flex-col space-y-4'>
 
-                                    <h1 className='text-xl text-left tracking-wider text-[#ededed] font-medium'>The New Way to Invest in Gold</h1>
+                                    <h1 className='text-xl text-left tracking-wider text-[#ededed] font-medium'>The New Way to Buy in Gold</h1>
                                     <h1 className='text-[--gray] text-sm text-justify tracking-wide'>Gold has been a trusted asset for centuries, and we make it easier than ever to invest in it with cutting-edge technology and superior customer service.
                                     </h1>
                                     <div className='space-y-4'>
@@ -99,7 +99,7 @@ export default function AboutUs() {
                                         <li>Involves quick registration and identity verification.</li>
                                         <li>Secure, user-friendly platform for managing wealth with ease.
                                         </li>
-                                        <li>Designed to help you start your investment journey seamlessly.
+                                        <li>Designed to Help You Start Your Wealth-Building Journey Seamlessly.
                                         </li>
                                         <li>Empowers you to take control of your financial future from the moment you create an account.</li>
                                     </ol>
@@ -121,7 +121,7 @@ export default function AboutUs() {
                             </Fade>
                             <Fade direction='bottom' triggerOnce cascade delay={400}>
 
-                                <p className='text-[--gray] leading-relaxed'>At EEVEE GOLD, we believe in loyalty, transparency, and growth. We reward our customers for their trust and long-term commitment. Whether it&lsquo;s our 16+1 Investment Reward Program or our innovative gold investment options, we strive to give you the tools to succeed financially. Our user-first approach ensures that your journey is as rewarding as your results.</p>
+                                <p className='text-[--gray] leading-relaxed'>At EEVEE GOLD, we believe in loyalty, transparency, and growth. We reward our customers for their trust and long-term commitment. Whether it’s our 16+1 Reward Program or our innovative gold options, we strive to provide you with the tools to succeed. Our user-first approach ensures that your journey is as rewarding as your results.</p>
                             </Fade>
                         </div>
                     </div>
