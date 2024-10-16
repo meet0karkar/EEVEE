@@ -14,7 +14,7 @@ const Index = () => {
             </div>
             <div className='z-10 w-[90%] mx-auto flex md:flex-row flex-col justify-between gap-10 md:gap-0 items-center py-10 md:py-20'>
                 <Fade direction='up' triggerOnce cascade delay={300}>
-                    <h1 className="md:w-1/2 text-center md:text-start text-[28px] md:text-[40px] font-semibold text-[--white] ">Unlock Your Future Digital Savings With EEVEE</h1>
+                    <h1 className="md:w-1/2 text-center md:text-start text-[28px] md:text-[40px] font-semibold text-[--white] ">Unlock Your Future Digital Growth with EEVEE</h1>
                 </Fade>
                 <Fade direction='up' triggerOnce cascade delay={300}>
                     <Link href="/plans" className='bg-white rounded-full px-12 py-3 md:px-16 md:py-4 text-black hover:text-[--white] cursor-pointer text-lg font-medium tracking-wide hover:bg-[--secondary] z-10 whitespace-nowrap'>Start Creating</Link>
