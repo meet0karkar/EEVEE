@@ -178,7 +178,7 @@ export const AccountSteps = [
     },
     {
         id: "05",
-        title: "Start Investing",
+        title: "Start Buying",
         details: "You’re all set! Begin your journey by making your first deposit and unlock the benefits of our unique gold-building plans."
     },
 ]
