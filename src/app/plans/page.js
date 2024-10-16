@@ -265,7 +265,7 @@ const Page = () => {
             <div className=' mt-[80px] text-[--black_text]  bg-gray-50 !overflow-x-hidden '>
                 <div className=" bg-[#272727] py-4">
                     <div className='w-[90%] mx-auto flex justify-between items-center'>
-                        <p className='md:text-xl text-lg font-medium md:font-semibold text-[--white] '>Your Total Investment :  {new Intl.NumberFormat("en-IN", {
+                        <p className='md:text-xl text-lg font-medium md:font-semibold text-[--white] '>Your Total :  {new Intl.NumberFormat("en-IN", {
                             style: "currency",
                             currency: "INR",
                             minimumFractionDigits: 2,
