@@ -29,12 +29,12 @@ export const Routes = [
 
 export const Features = [
     {
-        title: "First Investment",
+        title: "First Contribution",
         details: "Make your initial deposit to qualify for the 16+1 program."
     },
     {
         title: "Monthly Commitment",
-        details: "Invest the same amount for 16 consecutive months."
+        details: "Contribute the same amount for 16 consecutive months."
     },
     {
         title: "No Fees",
@@ -46,83 +46,84 @@ export const Features = [
     },
     {
         title: "Progress Tracker",
-        details: "Monitor your investment journey through your dashboard."
+        details: "Monitor your journey through your personalized dashboard."
     },
     {
         title: "Loyalty Reward",
-        details: "Get rewarded for staying consistent with your investment plan."
+        details: "Receive special rewards for staying consistent with your plan."
     },
     {
-        title: "Wealth Growth",
-        details: "Boost your savings with the additional free month."
+        title: "Gold Growth",
+        details: "Enhance your gold collection with the added bonus month."
     },
     {
         title: "Simple Start",
-        details: "Join now and unlock your 17th month free after 16 months!"
+        details: "Join today and unlock your 17th month free after completing 16 months!"
     },
 ]
 
 export const Features_About = [
     {
-        title: "16+1 Investment Reward Program",
-        details: "Offers a free 17th month of investment for loyal users."
+        title: "16+1 Reward Program",
+        details: "Offers a free 17th month for loyal users."
     },
     {
-        title: "MGold Investment Platform",
+        title: "MGold Platform",
         details: "50k+ active members, 99% happy customers, and over 1 million in managed assets."
     },
     {
         title: "Ease of Use",
-        details: " Quick account creation, real-time dashboards, and 24/7 investment tracking."
+        details: "Quick account creation, real-time dashboards, and 24/7 tracking."
     },
     {
         title: "Wealth Growth",
-        details: "Enhance financial returns with minimal effort."
+        details: "Enhance your returns with minimal effort."
     },
     {
         title: "Loyalty Rewards",
-        details: "Unique programs that pay back users for long-term commitment."
+        details: "Unique programs that reward users for long-term commitment."
     },
     {
         title: "Transparency",
         details: "Clear terms, no hidden fees, and progress tracking tools."
     },
     {
-        title: "Wealth Growth",
-        details: "Boost your savings with the additional free month."
+        title: "Additional Free Month",
+        details: "Enjoy an extra month with no extra cost."
     },
     {
-        title: "Company Values:",
+        title: "Company Values",
         details: "Focus on customer satisfaction, trust, innovation, and growth."
     },
 ]
+
 
 
 export const OurClint = [
     {
         icon: <GroupsIcon fontSize='large' sx={{ width: '65px', height: '65px' }} className='text-white ' />,
         title: "50k+ Active Members",
-        details: "Join a thriving community of gold investors"
+        details: "Join a thriving community of gold enthusiasts."
     },
     {
         icon: <SentimentSatisfiedAltIcon fontSize='large' sx={{ width: '65px', height: '65px' }} className='text-white' />,
         title: "99% Happy Customers",
-        details: "Exceptional satisfaction with transparent and secure investments."
+        details: "Exceptional satisfaction with transparent and secure services."
     },
     {
         icon: <SecurityIcon fontSize='large' sx={{ width: '65px', height: '65px' }} className='text-white' />,
-        title: "1M+ Money Managed",
-        details: "Trusted by investors with over 1 million in assets under management."
+        title: "1M+ Managed Assets",
+        details: "Trusted by many with over 1 million in assets under management."
     },
     {
         icon: <EmojiEventsIcon fontSize='large' sx={{ width: '65px', height: '65px' }} className='text-white' />,
         title: "Low Risk, High Reward",
-        details: "Invest in a stable and time-tested asset—gold."
+        details: "Engage with a stable and time-tested asset—gold."
     },
     {
         icon: <MiscellaneousServicesIcon fontSize='large' sx={{ width: '65px', height: '65px' }} className='text-white' />,
         title: "24/7 Access",
-        details: "Manage and track your gold investments anytime, anywhere."
+        details: "Manage and track your gold holdings anytime, anywhere."
     },
 ]
 
@@ -130,27 +131,27 @@ export const OurClint1 = [
     {
         icon: <GroupsIcon fontSize='large' sx={{ width: '30px', height: '30px' }} className='text-white ' />,
         title: "50k+ Active Members",
-        details: "Join a thriving community of gold investors"
+        details: "Join a thriving community of gold enthusiasts"
     },
     {
         icon: <SentimentSatisfiedAltIcon fontSize='large' sx={{ width: '30px', height: '30px' }} className='text-white' />,
         title: "99% Happy Customers",
-        details: "Exceptional satisfaction with transparent and secure investments."
+        details: "Exceptional satisfaction with transparent and secure transactions."
     },
     {
         icon: <SecurityIcon fontSize='large' sx={{ width: '30px', height: '30px' }} className='text-white' />,
         title: "1M+ Money Managed",
-        details: "Trusted by investors with over 1 million in assets under management."
+        details: "Trusted by our community with over 1 million in assets under management."
     },
     {
         icon: <EmojiEventsIcon fontSize='large' sx={{ width: '30px', height: '30px' }} className='text-white' />,
         title: "Low Risk, High Reward",
-        details: "Invest in a stable and time-tested asset—gold."
+        details: "Engage with a stable and time-tested asset—gold."
     },
     {
         icon: <MiscellaneousServicesIcon fontSize='large' sx={{ width: '30px', height: '30px' }} className='text-white' />,
         title: "24/7 Access",
-        details: "Manage and track your gold investments anytime, anywhere."
+        details: "Manage and track your gold holdings anytime, anywhere."
     },
 ]
 
@@ -158,7 +159,7 @@ export const AccountSteps = [
     {
         id: "01",
         title: "Click on Sign Up",
-        details: "Locate and click the &quot;Sign Up&quot; button at the top right corner of the homepage."
+        details: "Locate and click the Sign Up button at the top right corner of the homepage."
     },
     {
         id: "02",
@@ -178,7 +179,7 @@ export const AccountSteps = [
     {
         id: "05",
         title: "Start Investing",
-        details: "You&lsquo;re all set! Begin your journey by making your first deposit and enjoy the benefits of our unique investment plans."
+        details: "You’re all set! Begin your journey by making your first deposit and unlock the benefits of our unique gold-building plans."
     },
 ]
 
@@ -196,7 +197,7 @@ export const features = [
     {
       icon: <FiTrendingUp />,
       title: 'Innovative',
-      description: 'We continuously improve and offer solutions that fit the modern investor.',
+      description: 'We continuously improve and offer solutions that fit the modern user.',
     },
     {
       icon: <FiClock />,
