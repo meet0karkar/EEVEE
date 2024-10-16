@@ -58,7 +58,7 @@ export const Features = [
     },
     {
         title: "Simple Start",
-        details: "Join today and unlock your 17th month free after completing 16 months!"
+        details: "Join today and get gold of 17th month free after completing 16 months!"
     },
 ]
 
