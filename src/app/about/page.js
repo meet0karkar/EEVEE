@@ -26,11 +26,11 @@ export default function AboutUs() {
                         </div>
                         <div className="w-full mx-auto space-y-4 text-center lg:text-left lg:w-1/2 lg:px-16 ">
                             <Fade direction='down' triggerOnce cascade delay={300}>
-                                <p className="text-[--white]  font-semibold text-[28px] lg:text-[40px] tracking-wide ">Welcome to the Future of Smart Investing</p>
+                                <p className="text-[--white]  font-semibold text-[28px] lg:text-[40px] tracking-wide ">Welcome to a New Way of Building Gold Wealth</p>
                             </Fade>
                             <Fade direction='down' triggerOnce cascade delay={400}>
                                 <p className="text-[--gray] lg:text-normal text-sm  md:font-medium tracking-wide">
-                                    At EEVEE GOLD, we&lsquo;re redefining the way you invest by offering innovative, customer-centric financial solutions. Our mission is simple: make investing easy, rewarding, and accessible for everyone. Whether you&lsquo;re new to the world of finance or an experienced investor, we offer tailor-made opportunities that fit your needs, all while delivering exceptional value and returns.</p>
+                                    At EEVEE GOLD, we&lsquo;re redefining the way you build wealth by offering innovative, customer-centric solutions. Our mission is simple: make growing your gold easy, rewarding, and accessible for everyone. Whether you’re new to the world of gold or have experience, we provide tailor-made opportunities that fit your needs, all while delivering exceptional value.</p>
                             </Fade>
 
                             <Fade direction='down' triggerOnce cascade delay={500}>
