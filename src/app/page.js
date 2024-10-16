@@ -157,7 +157,7 @@ export default function Home() {
         <div className='flex flex-col lg:flex-row items-center justify-between space-y-7 lg:space-y-0 lg:space-x-7 mx-auto pb-16'>
           <div className='w-full lg:w-[60%] space-y-10'>
             <Fade direction='up' triggerOnce cascade delay={300}>
-              <h1 className=" text-center md:text-start text-[28px] md:text-[40px] font-semibold text-[--white]">The Next Generation of Savings with EEVEE</h1>
+              <h1 className=" text-center md:text-start text-[28px] md:text-[40px] font-semibold text-[--white]">Unlock Tomorrow’s Potential with EEVEE</h1>
             </Fade>
             <div className='grid grid-cols-1 md:grid-cols-2 mx-auto'>
               {OurClint.map((val, index) => {
