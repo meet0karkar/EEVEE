@@ -12,7 +12,6 @@ import Link from 'next/link';
 
 export default function Home() {
   const router = useRouter()
-
   // useEffect(() => {
   //   const authToken = Cookies.get('authToken');
   //   if (!authToken) {
