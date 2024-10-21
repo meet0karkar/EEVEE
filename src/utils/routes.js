@@ -95,7 +95,6 @@ export const Features = [
         details: "Join today to start purchasing digital gold and unlock incentives effortlessly."
     },
 ]
-
 // export const Features_About = [
 //     {
 //         title: "16+1 Reward Program",
@@ -164,7 +163,6 @@ export const Features_About = [
         details: "Focused on customer satisfaction, trust, innovation, and growth."
     },
 ]
-
 export const OurClint = [
     {
         icon: <GroupsIcon fontSize='large' sx={{ width: '65px', height: '65px' }} className='text-white ' />,
@@ -220,7 +218,6 @@ export const OurClint1 = [
         details: "Manage and track your gold holdings anytime, anywhere."
     },
 ]
-
 export const AccountSteps = [
     {
         id: "01",
