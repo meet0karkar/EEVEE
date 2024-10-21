@@ -62,7 +62,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
         {/* second section */}
           <div className="flex flex-col gap-4 lg:gap-0 lg:flex-row  justify-between items-center">
             <div className="lg:hidden w-full lg:w-1/2 flex justify-center items-center shrink-0">
