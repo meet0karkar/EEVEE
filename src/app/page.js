@@ -35,10 +35,13 @@ export default function Home() {
             </div>
             <div className="w-full mx-auto space-y-4 text-center lg:text-left lg:w-1/2 lg:px-20">
               <Fade direction='down' triggerOnce cascade delay={300}>
-                <p className="text-[--white]  font-semibold text-[28px] lg:text-[40px] tracking-wide">Creating The Future With EEVEE.</p>
+                // <p className="text-[--white]  font-semibold text-[28px] lg:text-[40px] tracking-wide">Creating The Future With EEVEE.</p>
+                <p className="text-[--white]  font-semibold text-[28px] lg:text-[40px] tracking-wide">Your Path to Digital Gold Ownership Begins Here.</p>
               </Fade>
               <Fade direction='down' triggerOnce cascade delay={400}>
-                <p className="text-[--gray] lg:text-lg  font-medium tracking-wide">purchase Smart, Save More: Get a Free Month After 16 – Start Now!</p>
+                // <p className="text-[--gray] lg:text-lg  font-medium tracking-wide">purchase Smart, Save More: Get a Free Month After 16 – Start Now!</p>
+                <p className="text-[--gray] lg:text-lg  font-medium tracking-wide"> Purchase Smart, Gain More: Enjoy Exclusive Rewards When You Start Today!</p>
+   
               </Fade>
               <div className="flex justify-center lg:justify-start ">
                 <Fade direction='down' triggerOnce cascade delay={500}>
@@ -72,7 +75,8 @@ export default function Home() {
             </div>
             <div className="w-full mx-auto text-center lg:text-left lg:w-1/2 lg:px-20">
               <Fade direction='up' triggerOnce cascade delay={300}>
-                <p className="text-[--white]  font-semibold text-[28px] lg:text-[40px] tracking-wide mb-6">Start Purchase & Enjoy <br /> a Free Month After 16 – Sign Up Now</p>
+                // <p className="text-[--white]  font-semibold text-[28px] lg:text-[40px] tracking-wide mb-6">Start Purchase & Enjoy <br /> a Free Month After 16 – Sign Up Now</p>
+                <p className="text-[--white]  font-semibold text-[28px] lg:text-[40px] tracking-wide mb-6">Start Purchase & Enjoy <br /> a Free Rewars After Certain Times – Sign Up Now</p>
               </Fade>
               <div className="space-y-4">
                 <Fade direction='up' triggerOnce cascade delay={400}>
