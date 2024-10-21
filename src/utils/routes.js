@@ -26,7 +26,6 @@ export const Routes = [
         path: "/contact"
     },
 ]
-
 // export const Features = [
 //     {
 //         title: "First Contribution",
