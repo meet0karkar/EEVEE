@@ -34,7 +34,7 @@ export default function Home() {
             <div className="w-full mx-auto space-y-4 text-center lg:text-left lg:w-1/2 lg:px-20">
               <Fade direction='down' triggerOnce cascade delay={300}>
                 // <p className="text-[--white]  font-semibold text-[28px] lg:text-[40px] tracking-wide">Creating The Future With EEVEE.</p>
-                <p className="text-[--white]  font-semibold text-[28px] lg:text-[40px] tracking-wide">Your Path to Digital Gold Ownership Begins Here</p>
+                <p className="text-[--white]  font-semibold text-[28px] lg:text-[40px] tracking-wide">Your Path to Digital Gold Ownership Begins</p>
               </Fade>
               <Fade direction='down' triggerOnce cascade delay={400}>
                 // <p className="text-[--gray] lg:text-lg  font-medium tracking-wide">purchase Smart, Save More: Get a Free Month After 16 – Start Now!</p>
