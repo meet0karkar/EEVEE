@@ -25,7 +25,7 @@ export const Routes = [
         path: "/contact"
     },
 ]
-{/*// export const Features = [
+/*// export const Features = [
 //     {
 //         title: "First Contribution",
 //         details: "Make your initial purchase to qualify for the 16+1 program."
@@ -58,7 +58,7 @@ export const Routes = [
 //         title: "Simple Start",
 //         details: "Join today and get gold of 17th month free after completing 16 months!"
 //     },
-// ]*/}
+// ]*/
 export const Features = [
     {
         title: "Initial Gold Purchase",
@@ -93,7 +93,7 @@ export const Features = [
         details: "Join today to start purchasing digital gold and unlock incentives effortlessly."
     },
 ]
-{/*// export const Features_About = [
+/*// export const Features_About = [
 //     {
 //         title: "16+1 Reward Program",
 //         details: "Offers a free 17th month for loyal users."
@@ -126,7 +126,7 @@ export const Features = [
 //         title: "Company Values",
 //         details: "Focus on customer satisfaction, trust, innovation, and growth."
 //     },
-// ]*/}
+// ]*/
 export const Features_About = [
     {
         title: "Incentives for Commitment",
@@ -241,7 +241,7 @@ export const AccountSteps = [
     {
        id: "05",
         title: "Start Purchasing",
-        {/*// details: "You’re ready to go! Start your journey by making your first purchase and unlock the benefits of our unique gold-building plans."*/}
+        /*// details: "You’re ready to go! Start your journey by making your first purchase and unlock the benefits of our unique gold-building plans."*/
         details: "Start your journey by purchasing digital gold, setting the stage for future incentives."
     },
 ]
