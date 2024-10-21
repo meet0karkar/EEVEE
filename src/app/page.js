@@ -39,7 +39,6 @@ export default function Home() {
               <Fade direction='down' triggerOnce cascade delay={400}>
                 // <p className="text-[--gray] lg:text-lg  font-medium tracking-wide">purchase Smart, Save More: Get a Free Month After 16 – Start Now!</p>
                 <p className="text-[--gray] lg:text-lg  font-medium tracking-wide"> Purchase Smart, Gain More: Enjoy Exclusive Rewards When You Start Today!</p>
-   
               </Fade>
               <div className="flex justify-center lg:justify-start ">
                 <Fade direction='down' triggerOnce cascade delay={500}>
