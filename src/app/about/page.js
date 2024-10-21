@@ -30,7 +30,7 @@ export default function AboutUs() {
                             </Fade>
                             <Fade direction='down' triggerOnce cascade delay={400}>
                                 <p className="text-[--gray] lg:text-normal text-sm  md:font-medium tracking-wide">
-                                    At EEVEE GOLD, we&lsquo;re redefining the way you build wealth by offering innovative, customer-centric solutions. Our mission is simple: make growing your gold easy, rewarding, and accessible for everyone. Whether you’re new to the world of gold or have experience, we provide tailor-made opportunities that fit your needs, all while delivering exceptional value.</p>
+                                    "At EEVEE GOLD, we’re transforming the way you build wealth with our innovative, customer-focused solutions. Our mission is straightforward: to make gold growth easy, rewarding, and accessible for everyone. Whether you’re a newcomer or have experience in the gold market, we offer customized opportunities that cater to your needs while providing exceptional value."</p>
                             </Fade>
 
                             <Fade direction='down' triggerOnce cascade delay={500}>
@@ -49,7 +49,7 @@ export default function AboutUs() {
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-4 md:space-y-0  md:space-x-6 lg:space-x-8  pt-10'>
                             <Fade direction='up' triggerOnce cascade delay={400} className='border border-slate-700 rounded-[12px] p-6 transition ease-in-out delay-150 hover:scale-105  cursor-pointer duration-300'>
                                 <div className='flex flex-col space-y-4'>
-                                    <h1 className='text-xl text-left tracking-wider text-[#ededed] font-medium'>Next Generation of Buying</h1>
+                                    <h1 className='text-xl text-left tracking-wider text-[#ededed] font-medium'>Next Generation of Purchasing</h1>
                                     <ol className='text-[--gray] text-sm text-justify tracking-wide list-disc pl-6 space-y-2 leading-relaxed'>
                                         <li>Built for the modern user.</li>
                                         <li>Offers a 16+1 Reward Program.</li>
@@ -64,7 +64,7 @@ export default function AboutUs() {
                             <Fade direction='up' triggerOnce cascade delay={400} className='border border-slate-700 rounded-[12px] p-6  transition ease-in-out delay-150 hover:scale-105  cursor-pointer duration-300'>
                                 <div className='flex flex-col space-y-4'>
 
-                                    <h1 className='text-xl text-left tracking-wider text-[#ededed] font-medium'>The New Way to Buy in Gold</h1>
+                                    <h1 className='text-xl text-left tracking-wider text-[#ededed] font-medium'>The New Way to Purchase in Gold</h1>
                                     <h1 className='text-[--gray] text-sm text-justify tracking-wide'>Gold has been a trusted asset for centuries, and we make it easier than ever to invest in it with cutting-edge technology and superior customer service.
                                     </h1>
                                     <div className='space-y-4'>
