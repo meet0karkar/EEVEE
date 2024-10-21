@@ -249,7 +249,6 @@ export const AccountSteps = [
         details: "Start your journey by purchasing digital gold, setting the stage for future incentives."
     },
 ]
-
 export const features = [
     {
       icon: <FiUser />,
