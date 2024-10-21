@@ -10,8 +10,7 @@ import { FiUser, FiShield, FiTrendingUp, FiClock } from 'react-icons/fi';
 export const Routes = [
     {
         name: "Home",
-        path: "/"
-        
+        path: "/" 
     },
     {
         name: "Plans",
