@@ -30,11 +30,11 @@ export const Routes = [
 export const Features = [
     {
         title: "First Contribution",
-        details: "Make your initial deposit to qualify for the 16+1 program."
+        details: "Make your initial purchase to qualify for the 16+1 program."
     },
     {
         title: "Monthly Commitment",
-        details: "Contribute the same amount for 16 consecutive months."
+        details: "Purchase the same amount for 16 consecutive months."
     },
     {
         title: "No Fees",
@@ -178,8 +178,8 @@ export const AccountSteps = [
     },
     {
         id: "05",
-        title: "Start Buying",
-        details: "You’re all set! Begin your journey by making your first deposit and unlock the benefits of our unique gold-building plans."
+        title: "Start Purchasing",
+        details: "You’re ready to go! Start your journey by making your first purchase and unlock the benefits of our unique gold-building plans."
     },
 ]
 
