@@ -30,7 +30,7 @@ export default function AboutUs() {
                             </Fade>
                             <Fade direction='down' triggerOnce cascade delay={400}>
                                 <p className="text-[--gray] lg:text-normal text-sm  md:font-medium tracking-wide">
-                                    "At EEVEE GOLD, we’re transforming the way you build wealth with our innovative, customer-focused solutions. Our mission is straightforward: to make gold growth easy, rewarding, and accessible for everyone. Whether you’re a newcomer or have experience in the gold market, we offer customized opportunities that cater to your needs while providing exceptional value."</p>
+                                    At EEVEE GOLD, we’re transforming the way you build wealth with our innovative, customer-focused solutions. Our mission is straightforward: to make gold growth easy, rewarding, and accessible for everyone. Whether you’re a newcomer or have experience in the gold market, we offer customized opportunities that cater to your needs while providing exceptional value.</p>
                             </Fade>
 
                             <Fade direction='down' triggerOnce cascade delay={500}>
