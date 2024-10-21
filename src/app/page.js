@@ -18,7 +18,6 @@ export default function Home() {
   //     router.push('/login');
   //   }
   // }, [router]);
-
   return (
     <div className="overflow-x-hidden bg-[--black]  h-auto">
       <Navbar/>
