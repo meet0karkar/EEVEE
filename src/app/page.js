@@ -23,7 +23,6 @@ export default function Home() {
       <Navbar/>
       <div className='flex flex-col space-y-14  w-[90%]  mx-auto'>
       {/* main section */}
-
         <div className=" ">
           <div className="lg:h-screen  lg:pt-10 pt-20 flex flex-col gap-4 lg:gap-0 lg:flex-row  justify-center items-center">
             <div className="w-full lg:w-1/2 flex justify-center items-center shrink-0">
