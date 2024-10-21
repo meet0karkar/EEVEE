@@ -21,7 +21,7 @@ export default function Home() {
   // }, [router]);
 
   return (
-    <div className="overflow-x-hidden bg-[--black]  h-auto" >
+    <div className="overflow-x-hidden bg-[--black]  h-auto">
       <Navbar/>
       <div className='flex flex-col space-y-14  w-[90%]  mx-auto'>
       {/* main section */}
