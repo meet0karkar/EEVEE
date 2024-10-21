@@ -25,40 +25,6 @@ export const Routes = [
         path: "/contact"
     },
 ]
-/*// export const Features = [
-//     {
-//         title: "First Contribution",
-//         details: "Make your initial purchase to qualify for the 16+1 program."
-//     },
-//     {
-//         title: "Monthly Commitment",
-//         details: "Purchase the same amount for 16 consecutive months."
-//     },
-//     {
-//         title: "No Fees",
-//         details: "Your 17th month’s deposit is fully covered by us."
-//     },
-//     {
-//         title: "Free Month",
-//         details: "Enjoy this bonus with zero hidden charges or extra costs."
-//     },
-//     {
-//         title: "Progress Tracker",
-//         details: "Monitor your journey through your personalized dashboard."
-//     },
-//     {
-//         title: "Loyalty Reward",
-//         details: "Receive special rewards for staying consistent with your plan."
-//     },
-//     {
-//         title: "Gold Growth",
-//         details: "Enhance your gold collection with the added bonus month."
-//     },
-//     {
-//         title: "Simple Start",
-//         details: "Join today and get gold of 17th month free after completing 16 months!"
-//     },
-// ]*/
 export const Features = [
     {
         title: "Initial Gold Purchase",
@@ -93,40 +59,7 @@ export const Features = [
         details: "Join today to start purchasing digital gold and unlock incentives effortlessly."
     },
 ]
-/*// export const Features_About = [
-//     {
-//         title: "16+1 Reward Program",
-//         details: "Offers a free 17th month for loyal users."
-//     },
-//     {
-//         title: "MGold Platform",
-//         details: "50k+ active members, 99% happy customers, and over 1 million in managed assets."
-//     },
-//     {
-//         title: "Ease of Use",
-//         details: "Quick account creation, real-time dashboards, and 24/7 tracking."
-//     },
-//     {
-//         title: "Wealth Growth",
-//         details: "Enhance your returns with minimal effort."
-//     },
-//     {
-//         title: "Loyalty Rewards",
-//         details: "Unique programs that reward users for long-term commitment."
-//     },
-//     {
-//         title: "Transparency",
-//         details: "Clear terms, no hidden fees, and progress tracking tools."
-//     },
-//     {
-//         title: "Additional Free Month",
-//         details: "Enjoy an extra month with no extra cost."
-//     },
-//     {
-//         title: "Company Values",
-//         details: "Focus on customer satisfaction, trust, innovation, and growth."
-//     },
-// ]*/
+
 export const Features_About = [
     {
         title: "Incentives for Commitment",
@@ -241,7 +174,6 @@ export const AccountSteps = [
     {
        id: "05",
         title: "Start Purchasing",
-        /*// details: "You’re ready to go! Start your journey by making your first purchase and unlock the benefits of our unique gold-building plans."*/
         details: "Start your journey by purchasing digital gold, setting the stage for future incentives."
     },
 ]
