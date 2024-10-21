@@ -218,6 +218,7 @@ export const OurClint1 = [
         details: "Manage and track your gold holdings anytime, anywhere."
     },
 ]
+
 export const AccountSteps = [
     {
         id: "01",
@@ -246,6 +247,7 @@ export const AccountSteps = [
         details: "Start your journey by purchasing digital gold, setting the stage for future incentives."
     },
 ]
+
 export const features = [
     {
       icon: <FiUser />,
