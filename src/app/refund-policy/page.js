@@ -1,18 +1,18 @@
-import React from 'react'
-import Navbar from '../../components/navbar'
-import Footer from '../../components/footer'
+import React from "react";
+import Navbar from "../../components/navbar";
+import Footer from "../../components/footer";
 
 const Page = () => {
-    return (
-        <div className=''>
-            <Navbar />
-            <div className='lg:my-32  lg:mt-40 md:my-28  mt-24 mb-16 w-[90%] mx-auto text-[--policy-text] tracking-wide'>
-                <h1 className='font-bold text-[30px] text-white '>Refund Policy</h1>
-                <div>
+  return (
+    <div className="">
+      <Navbar />
+      <div className="lg:my-32  lg:mt-40 md:my-28  mt-24 mb-16 w-[90%] mx-auto text-[--policy-text] tracking-wide">
+        <h1 className="font-bold text-[30px] text-white ">Refund Policy</h1>
+        <div>
           <p className="font-semibold mt-6 mb-4">
             eeveegoldsavings.com is managed by EEVEE LIFESTYLE LLP
           </p>
-          <p className="leading-relaxed">
+          {/* <p className="leading-relaxed">
             If you stop this plan, that is totally okay; however, you can discontinue this plan only after 16 months, in which case we will return only the gold equivalent of your deposited money. We cannot offer extra benefits if you discontinue this plan before completing 16 months.
           </p>
           <br />
@@ -38,14 +38,28 @@ const Page = () => {
             For complaints regarding products that come with a warranty from the manufacturers, please refer the issue directly to them.
           </p>
           <p className="leading-relaxed mt-4">
+            In case of any refun
+            ds approved by LALIMA JEWELS LLP, it will take 7 days for the refund to be processed.
+          </p> */}
+           <p className="leading-relaxed">
+           You can discontinue your plan at any time; however, if you do so before completing the full duration of your commitment, we will return only the gold equivalent of your deposited money.Extra benefits cannot be offered if you discontinue your plan early.
+          </p>
+          <br />
+          <p className="leading-relaxed">
+            Whenever you are unable to continue this plan and skip two months, the payment for the third month will be the total cost of three months’ amounts plus a 5% charge, which must be paid by the 1st to the 10th of the month; otherwise, your plan will expire, and you will receive gold equivalent to the total value of your monthly deposits.
+          </p>
+          <p className="leading-relaxed mt-4">
+          Cancellations will only be considered if the request is made within 7 days of placing the order.
+          </p>
+          <p className="leading-relaxed mt-4">
             In case of any refunds approved by LALIMA JEWELS LLP, it will take 7 days for the refund to be processed.
           </p>
           <br />
         </div>
-        </div>
-            <Footer />
-        </div>
-    )
-}
+      </div>
+      <Footer />
+    </div>
+  );
+};
 
-export default Page
+export default Page;
