@@ -73,7 +73,7 @@ export default function Home() {
             </div>
             <div className="w-full mx-auto text-center lg:text-left lg:w-1/2 lg:px-20">
               <Fade direction='up' triggerOnce cascade delay={300}>
-                <p className="text-[--white]  font-semibold text-[28px] lg:text-[40px] tracking-wide mb-6">Start Purchase & Enjoy <br /> a Free Rewars After Certain Times – Sign Up Now</p>
+                <p className="text-[--white]  font-semibold text-[28px] lg:text-[40px] tracking-wide mb-6">Start Purchase & Enjoy <br /> a Free Rewards After Certain Times – Sign Up Now</p>
               </Fade>
               <div className="space-y-4">
                 <Fade direction='up' triggerOnce cascade delay={400}>
