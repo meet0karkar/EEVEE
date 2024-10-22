@@ -57,7 +57,7 @@ export const Features = [
     },
     {
         title: "Easy Enrollment",
-        details: "Join today to start purchasing digital gold and unlock incentives effortlessly."
+        details: "Join today to start purchasing digital gold and unlock incentives"
     },
 ]
 
