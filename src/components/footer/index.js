@@ -53,9 +53,9 @@ const Index = () => {
                 {/* Terms and Policies */}
                 <Fade direction='up' triggerOnce cascade delay={300}>
                     <div className='flex flex-col md:flex-row justify-between items-center gap-4 md:gap-10'>
-                        <Link href="https://eeveegoldsavings.com/terms-condition" target="_blank" rel="noopener noreferrer" className='text-[--gray] font-medium'>Terms of Use</Link>
-                        <Link href="https://eeveegoldsavings.com/privacy-policy" target="_blank" rel="noopener noreferrer" className='text-[--gray] font-medium'>Privacy Policy</Link>
-                        <Link href="https://eeveegoldsavings.com/refund-policy" target="_blank" rel="noopener noreferrer" className='text-[--gray] font-medium'>Refund Policy</Link>
+                        <Link href="/terms-condition" target="_blank" rel="noopener noreferrer" className='text-[--gray] font-medium'>Terms of Use</Link>
+                        <Link href="/privacy-policy" target="_blank" rel="noopener noreferrer" className='text-[--gray] font-medium'>Privacy Policy</Link>
+                        <Link href="/refund-policy" target="_blank" rel="noopener noreferrer" className='text-[--gray] font-medium'>Refund Policy</Link>
                     </div>
                 </Fade>
             </div>
