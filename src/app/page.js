@@ -12,17 +12,20 @@ import Link from 'next/link';
 
 export default function Home() {
   const router = useRouter()
+
   // useEffect(() => {
   //   const authToken = Cookies.get('authToken');
   //   if (!authToken) {
   //     router.push('/login');
   //   }
   // }, [router]);
+
   return (
-    <div className="overflow-x-hidden bg-[--black]  h-auto">
+    <div className="overflow-x-hidden bg-[--black]  h-auto" >
       <Navbar/>
       <div className='flex flex-col space-y-14  w-[90%]  mx-auto'>
       {/* main section */}
+
         <div className=" ">
           <div className="lg:h-screen  lg:pt-10 pt-20 flex flex-col gap-4 lg:gap-0 lg:flex-row  justify-center items-center">
             <div className="w-full lg:w-1/2 flex justify-center items-center shrink-0">
@@ -32,12 +35,11 @@ export default function Home() {
             </div>
             <div className="w-full mx-auto space-y-4 text-center lg:text-left lg:w-1/2 lg:px-20">
               <Fade direction='down' triggerOnce cascade delay={300}>
-                // <p className="text-[--white]  font-semibold text-[28px] lg:text-[40px] tracking-wide">Creating The Future With EEVEE.</p>
-                <p className="text-[--white]  font-semibold text-[28px] lg:text-[40px] tracking-wide">Your Path to Digital Gold Ownership Begins</p>
+                {/* <p className="text-[--white]  font-semibold text-[28px] lg:text-[40px] tracking-wide">Creating The Future With EEVEE Gold.</p> */}
+                <p className="text-[--white]  font-semibold text-[28px] lg:text-[40px] tracking-wide">Your Path to Digital Gold Ownership Begins Here.</p>
               </Fade>
               <Fade direction='down' triggerOnce cascade delay={400}>
-                // <p className="text-[--gray] lg:text-lg  font-medium tracking-wide">purchase Smart, Save More: Get a Free Month After 16 – Start Now!</p>
-                <p className="text-[--gray] lg:text-lg  font-medium tracking-wide"> Purchase Smart, Gain More: Enjoy Exclusive Rewards When You Start Today!</p>
+                <p className="text-[--gray] lg:text-lg  font-medium tracking-wide">Purchase Smart, Gain More: Enjoy Exclusive Rewards When You Start Today!</p>
               </Fade>
               <div className="flex justify-center lg:justify-start ">
                 <Fade direction='down' triggerOnce cascade delay={500}>
@@ -60,7 +62,9 @@ export default function Home() {
             </div>
           </div>
         </div>
+
         {/* second section */}
+       
           <div className="flex flex-col gap-4 lg:gap-0 lg:flex-row  justify-between items-center">
             <div className="lg:hidden w-full lg:w-1/2 flex justify-center items-center shrink-0">
               <Fade direction='up' triggerOnce cascade delay={500}>
@@ -69,7 +73,6 @@ export default function Home() {
             </div>
             <div className="w-full mx-auto text-center lg:text-left lg:w-1/2 lg:px-20">
               <Fade direction='up' triggerOnce cascade delay={300}>
-                // <p className="text-[--white]  font-semibold text-[28px] lg:text-[40px] tracking-wide mb-6">Start Purchase & Enjoy <br /> a Free Month After 16 – Sign Up Now</p>
                 <p className="text-[--white]  font-semibold text-[28px] lg:text-[40px] tracking-wide mb-6">Start Purchase & Enjoy <br /> a Free Rewars After Certain Times – Sign Up Now</p>
               </Fade>
               <div className="space-y-4">
