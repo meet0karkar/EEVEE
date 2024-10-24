@@ -114,46 +114,139 @@ const Page = () => {
         }
       }, [searchParams]);
 
+    // const getAmountList = async () => {
+    //     setIsLoading(true)
+    //     try {
+    //         const data = await getAmoutListApi()
+    //         console.log('amountSchema Values:', data.data);
+    //         if (data.status) {
+    //             const column = [
+    //                 { header: "Amount", accessor: "amount", align: "left", sortable: true },
+    //                 { header: "Start Date", accessor: "startDate", align: "center" },
+    //                 // { header: "End Date", accessor: "endDate", align: "center" },
+    //                 // { header: "Total Payable Amount", accessor: "totalAmountPayable", align: "center", sortable: true },
+    //                 { header: "Actions", accessor: "action", align: "center" },
+    //                 // { header: "", accessor: "", align: "center" },
+    //             ]
+
+    //             const row = data.data?.map((val) => {
+    //                 return {
+    //                     id: val?._id,
+    //                     startDate: val?.startDate || "-",
+    //                     // endDate: val?.endDate,
+    //                     // totalAmountPayable: val?.totalAmountPayable,
+    //                     amount: val?.amount,
+    //                 }
+    //             })
+
+    //             // setCurrentStep(2)
+    //             setinvestmentData(data.data)
+    //             // setTotalInvest(data.totalInvest)
+    //             setTableData({ column, row })
+    //             setModalOpen(false)
+    //             setIsLoading(false)
+    //             console.log('amountSchema Status:', data.status)
+    //         }
+    //     }
+    //     catch (errors) {
+    //         setIsLoading(false)
+    //         console.log('Errors:', errors);
+    //     }
+    // }
+    // const getAmountList = async () => {
+    //     setIsLoading(true);
+    //     try {
+    //         const data = await getAmoutListApi();
+    //         console.log('amountSchema Values:', data.data);
+    
+    //         if (data.status) {
+    //             // Defining only three columns: Amount, Start Date, and Actions
+    //             const column = [
+    //                 { header: "Amount", accessor: "amount", align: "left", sortable: true },
+    //                 { header: "Start Date", accessor: "startDate", align: "center" },
+    //                 { header: "Actions", accessor: "action", align: "center" },  // Actions column for handling any future actions
+    //             ];
+    
+    //             // Mapping rows to include only amount, startDate, and id (for actions)
+    //             const row = data.data?.map((val) => {
+    //                 return {
+    //                     id: val?._id,
+    //                     amount: val?.amount,
+    //                     startDate: val?.startDate || "-", // Display '-' if startDate is missing
+    //                     action: (
+    //                         <button 
+    //                             onClick={() => handlePayment(val?._id, val?.amount)}
+    //                             className="bg-[--secondary] text-white px-4 py-1 rounded-md"
+    //                         >
+    //                             Pay Now
+    //                         </button>
+    //                     ),  // Define your action button or any custom content here
+    //                 };
+    //             });
+    
+    //             setinvestmentData(data.data);
+    //             setTableData({ column, row });
+    //             setModalOpen(false);
+    //             setIsLoading(false);
+    //             console.log('amountSchema Status:', data.status);
+    //         }
+    //     } catch (errors) {
+    //         setIsLoading(false);
+    //         console.log('Errors:', errors);
+    //     }
+    // };
+    
     const getAmountList = async () => {
-        setIsLoading(true)
+        setIsLoading(true);
         try {
-            const data = await getAmoutListApi()
+            const data = await getAmoutListApi();
             console.log('amountSchema Values:', data.data);
+    
             if (data.status) {
+                // Defining only the columns we want to display: Amount, Start Date, and Actions
                 const column = [
                     { header: "Amount", accessor: "amount", align: "left", sortable: true },
                     { header: "Start Date", accessor: "startDate", align: "center" },
-                    { header: "End Date", accessor: "endDate", align: "center" },
-                    { header: "Total Payable Amount", accessor: "totalAmountPayable", align: "center", sortable: true },
-                    { header: "Actions", accessor: "action", align: "center" },
-                    { header: "", accessor: "", align: "center" },
-                ]
-
+                    { header: "Actions", accessor: "action", align: "center" },  // Actions column
+                ];
+    
+                // Mapping rows to include only amount, startDate, and id (for actions)
                 const row = data.data?.map((val) => {
                     return {
                         id: val?._id,
-                        startDate: val?.startDate || "-",
-                        endDate: val?.endDate,
-                        totalAmountPayable: val?.totalAmountPayable,
-                        amount: val?.amount,
-                    }
-                })
-
-                // setCurrentStep(2)
-                setinvestmentData(data.data)
-                setTotalInvest(data.totalInvest)
-                setTableData({ column, row })
-                setModalOpen(false)
-                setIsLoading(false)
-                console.log('amountSchema Status:', data.status)
+                        amount: val?.amount,  // Ensure amount field exists
+                        startDate: val?.startDate || "-", // Default to "-" if startDate is missing
+                        action: (
+                            <div>
+                                {/* <button 
+                                    onClick={() => handlePayment(val?._id, val?.amount)}
+                                    className="bg-[--secondary] text-white px-4 py-1 rounded-md"
+                                >
+                                    Pay Now
+                                </button> */}
+                                <button className="mx-2 border-2 border-[--secondary] text-[--secondary] px-4 py-1 rounded-md">
+                                    Invest More
+                                </button>
+                                <button className="bg-purple-600 text-white px-4 py-1 rounded-md">
+                                    Invoice
+                                </button>
+                            </div>
+                        ),
+                    };
+                });
+    
+                setinvestmentData(data.data);
+                setTableData({ column, row });
+                setModalOpen(false);
+                setIsLoading(false);
+                console.log('amountSchema Status:', data.status);
             }
-        }
-        catch (errors) {
-            setIsLoading(false)
+        } catch (errors) {
+            setIsLoading(false);
             console.log('Errors:', errors);
         }
-    }
-
+    };
+    
     const handleTransitionList = async (id) => {
         setIsLoading1(true)
         setTransactionData([])
@@ -285,7 +378,7 @@ const Page = () => {
     };
 
     return (
-        <div className='!overflow-x-hidden '>
+        <div className='!overflow-x-hidden'>
             <Navbar />
             <div className=' mt-[80px] text-[--black_text]  bg-gray-50 !overflow-x-hidden '>
                 <div className=" bg-[#272727] py-4">
