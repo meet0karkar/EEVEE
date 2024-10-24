@@ -5,7 +5,7 @@ import ControlPointIcon from '@mui/icons-material/ControlPoint'
 import { Modal, message } from 'antd'
 import { useFormik } from 'formik'
 import Cookies from 'js-cookie'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react' 
 import { useSelector } from 'react-redux'
 import * as Yup from 'yup'
@@ -29,7 +29,7 @@ const Page = () => {
     const [previewImage, setPreviewImage] = useState(null);
     const [totalInvest, setTotalInvest] = useState(0)
     const [invoiceId, setInvoiceId] = useState('')
-
+    
 
     const fileInputRef = useRef(null);
 
@@ -97,6 +97,22 @@ const Page = () => {
     const [isPlanLoading, setIsPlanLoading] = useState(false);
     const [isPaymentModal, setisPaymentModal] = useState(false);
     const [tableData, setTableData] = useState({ column: [], row: [] });
+    // get true bool from confirm process
+    const searchParams = useSearchParams();
+    // useEffect(()=>{
+    //    if(searchParams === "gettrue"){
+    //     setisPaymentModal(true)
+        
+    //    }
+   
+    
+    // })
+    useEffect(() => {
+        const gettrue = searchParams.get('gettrue'); // Extract the 'gettrue' parameter from the URL
+        if (gettrue === 'true') {
+          setisPaymentModal(true);
+        }
+      }, [searchParams]);
 
     const getAmountList = async () => {
         setIsLoading(true)
@@ -166,9 +182,10 @@ const Page = () => {
 
     const handlePayment = async (id, amount) => {
         console.log('data received', id)
-        setIsModalVisible(true);
+        // setIsModalVisible(true);
         setPlanId(id)
         setAmount(amount)
+        router.push(`/confirm-process?${amount}`)
     }
     const handlemodal = () =>{
         setisPaymentModal(true)
@@ -315,7 +332,7 @@ const Page = () => {
                         <div className="text-red-500 text-sm">{amountFormik.errors.amount}</div>
                     ) : null}
                 </Modal>
-                <Modal
+                {/* <Modal
                     title={null}
                     centered
                     open={isModalVisible}
@@ -347,21 +364,19 @@ const Page = () => {
                         <CloseOutlined style={{ fontSize: '16px', cursor: 'pointer' }} className='hover:text-[--black] text-[--gray]' onClick={handleCancel} />
                     </div>
                     <div style={{ display: 'flex', }} className='justify-between'>
-                        {/* Left part */}
+                       
                         <div >
                             <h3 className='text-black  font-semibold text-lg my-4'>Amount:&nbsp;{amount}</h3>
-                            {/* <p className='text-[--gray] mb-2 font-medium'></p> */}
-                            {/* <p className='text-[--gray] mb-2 font-medium'>IFSC Code: ICIC0004371</p> */}
+                            <p className='text-[--gray] mb-2 font-medium'></p>
+                            <p className='text-[--gray] mb-2 font-medium'>IFSC Code: ICIC0004371</p>
                         </div>
-                        {/* Right part */}
-                        {/* <div>
-                            <h3 className='text-black  font-semibold text-lg my-4'>UPI & QR Code</h3> */}
-                            {/* <QRCodeSVG value="upi://pay?pa=your_upi_id@upi" size={150} className='text-[--gray] mb-2 font-medium' /> */}
-                            {/* <p className='text-[--gray] mb-2 font-medium'>UPI ID: eeveelifestylellp.ibz@icici</p>
-                        </div> */}
+                        <div>
+                            <h3 className='text-black  font-semibold text-lg my-4'>UPI & QR Code</h3>
+                            <QRCodeSVG value="upi://pay?pa=your_upi_id@upi" size={150} className='text-[--gray] mb-2 font-medium' />
+                            <p className='text-[--gray] mb-2 font-medium'>UPI ID: eeveelifestylellp.ibz@icici</p>
+                        </div>
                     </div>
-                    {/* Below both sections */}
-                    {/* <div style={{ marginTop: '20px' }}>
+                    <div style={{ marginTop: '20px' }}>
                         <p className='mb-4'><strong>Note:</strong> Please Share you successfull payment screenshot to +91 82386 64001 & It will take a minimum of 1 day to receive your invoice after successful payment.</p>
                         <div className='flex  items-center gap-4 m-2 ml-0'>
                             <div className='cursor-pointer border border-dashed rounded-xl border-[--gray] w-full flex justify-center items-center h-20 gap-2' onClick={handleDivClick}>
@@ -377,8 +392,8 @@ const Page = () => {
                             )}
                         </div>
 
-                    </div> */}
-                </Modal>
+                    </div>
+                </Modal> */}
                 <Modal
                     title={null}
                     centered
