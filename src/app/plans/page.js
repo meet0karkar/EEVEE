@@ -5,7 +5,7 @@ import ControlPointIcon from '@mui/icons-material/ControlPoint'
 import { Modal, message } from 'antd'
 import { useFormik } from 'formik'
 import Cookies from 'js-cookie'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react' 
 import { useSelector } from 'react-redux'
 import * as Yup from 'yup'
@@ -29,7 +29,7 @@ const Page = () => {
     const [previewImage, setPreviewImage] = useState(null);
     const [totalInvest, setTotalInvest] = useState(0)
     const [invoiceId, setInvoiceId] = useState('')
-
+    
 
     const fileInputRef = useRef(null);
 
@@ -43,6 +43,8 @@ const Page = () => {
     };
 
     const handleCancel = () => {
+        setisPaymentModal(false)
+        setModalOpen(false)
         setAmount()
         setPlanId('')
         setPreviewImage(null)
@@ -93,48 +95,158 @@ const Page = () => {
     const [isInvoiceLoading, setIsInvoiceLoading] = useState(false);
     const [isImageLoading, setIsimageLoading] = useState(false);
     const [isPlanLoading, setIsPlanLoading] = useState(false);
+    const [isPaymentModal, setisPaymentModal] = useState(false);
     const [tableData, setTableData] = useState({ column: [], row: [] });
+    // get true bool from confirm process
+    const searchParams = useSearchParams();
+    // useEffect(()=>{
+    //    if(searchParams === "gettrue"){
+    //     setisPaymentModal(true)
+        
+    //    }
+   
+    
+    // })
+    useEffect(() => {
+        const gettrue = searchParams.get('gettrue'); // Extract the 'gettrue' parameter from the URL
+        if (gettrue === 'true') {
+          setisPaymentModal(true);
+        }
+      }, [searchParams]);
 
+    // const getAmountList = async () => {
+    //     setIsLoading(true)
+    //     try {
+    //         const data = await getAmoutListApi()
+    //         console.log('amountSchema Values:', data.data);
+    //         if (data.status) {
+    //             const column = [
+    //                 { header: "Amount", accessor: "amount", align: "left", sortable: true },
+    //                 { header: "Start Date", accessor: "startDate", align: "center" },
+    //                 // { header: "End Date", accessor: "endDate", align: "center" },
+    //                 // { header: "Total Payable Amount", accessor: "totalAmountPayable", align: "center", sortable: true },
+    //                 { header: "Actions", accessor: "action", align: "center" },
+    //                 // { header: "", accessor: "", align: "center" },
+    //             ]
+
+    //             const row = data.data?.map((val) => {
+    //                 return {
+    //                     id: val?._id,
+    //                     startDate: val?.startDate || "-",
+    //                     // endDate: val?.endDate,
+    //                     // totalAmountPayable: val?.totalAmountPayable,
+    //                     amount: val?.amount,
+    //                 }
+    //             })
+
+    //             // setCurrentStep(2)
+    //             setinvestmentData(data.data)
+    //             // setTotalInvest(data.totalInvest)
+    //             setTableData({ column, row })
+    //             setModalOpen(false)
+    //             setIsLoading(false)
+    //             console.log('amountSchema Status:', data.status)
+    //         }
+    //     }
+    //     catch (errors) {
+    //         setIsLoading(false)
+    //         console.log('Errors:', errors);
+    //     }
+    // }
+    // const getAmountList = async () => {
+    //     setIsLoading(true);
+    //     try {
+    //         const data = await getAmoutListApi();
+    //         console.log('amountSchema Values:', data.data);
+    
+    //         if (data.status) {
+    //             // Defining only three columns: Amount, Start Date, and Actions
+    //             const column = [
+    //                 { header: "Amount", accessor: "amount", align: "left", sortable: true },
+    //                 { header: "Start Date", accessor: "startDate", align: "center" },
+    //                 { header: "Actions", accessor: "action", align: "center" },  // Actions column for handling any future actions
+    //             ];
+    
+    //             // Mapping rows to include only amount, startDate, and id (for actions)
+    //             const row = data.data?.map((val) => {
+    //                 return {
+    //                     id: val?._id,
+    //                     amount: val?.amount,
+    //                     startDate: val?.startDate || "-", // Display '-' if startDate is missing
+    //                     action: (
+    //                         <button 
+    //                             onClick={() => handlePayment(val?._id, val?.amount)}
+    //                             className="bg-[--secondary] text-white px-4 py-1 rounded-md"
+    //                         >
+    //                             Pay Now
+    //                         </button>
+    //                     ),  // Define your action button or any custom content here
+    //                 };
+    //             });
+    
+    //             setinvestmentData(data.data);
+    //             setTableData({ column, row });
+    //             setModalOpen(false);
+    //             setIsLoading(false);
+    //             console.log('amountSchema Status:', data.status);
+    //         }
+    //     } catch (errors) {
+    //         setIsLoading(false);
+    //         console.log('Errors:', errors);
+    //     }
+    // };
+    
     const getAmountList = async () => {
-        setIsLoading(true)
+        setIsLoading(true);
         try {
-            const data = await getAmoutListApi()
+            const data = await getAmoutListApi();
             console.log('amountSchema Values:', data.data);
+    
             if (data.status) {
+                // Defining only the columns we want to display: Amount, Start Date, and Actions
                 const column = [
                     { header: "Amount", accessor: "amount", align: "left", sortable: true },
                     { header: "Start Date", accessor: "startDate", align: "center" },
-                    { header: "End Date", accessor: "endDate", align: "center" },
-                    { header: "Total Payable Amount", accessor: "totalAmountPayable", align: "center", sortable: true },
-                    { header: "Actions", accessor: "action", align: "center" },
-                    { header: "", accessor: "", align: "center" },
-                ]
-
+                    { header: "Actions", accessor: "action", align: "center" },  // Actions column
+                ];
+    
+                // Mapping rows to include only amount, startDate, and id (for actions)
                 const row = data.data?.map((val) => {
                     return {
                         id: val?._id,
-                        startDate: val?.startDate || "-",
-                        endDate: val?.endDate,
-                        totalAmountPayable: val?.totalAmountPayable,
-                        amount: val?.amount,
-                    }
-                })
-
-                // setCurrentStep(2)
-                setinvestmentData(data.data)
-                setTotalInvest(data.totalInvest)
-                setTableData({ column, row })
-                setModalOpen(false)
-                setIsLoading(false)
-                console.log('amountSchema Status:', data.status)
+                        amount: val?.amount,  // Ensure amount field exists
+                        startDate: val?.startDate || "-", // Default to "-" if startDate is missing
+                        action: (
+                            <div>
+                                {/* <button 
+                                    onClick={() => handlePayment(val?._id, val?.amount)}
+                                    className="bg-[--secondary] text-white px-4 py-1 rounded-md"
+                                >
+                                    Pay Now
+                                </button> */}
+                                <button className="mx-2 border-2 border-[--secondary] text-[--secondary] px-4 py-1 rounded-md">
+                                    Invest More
+                                </button>
+                                <button className="bg-purple-600 text-white px-4 py-1 rounded-md">
+                                    Invoice
+                                </button>
+                            </div>
+                        ),
+                    };
+                });
+    
+                setinvestmentData(data.data);
+                setTableData({ column, row });
+                setModalOpen(false);
+                setIsLoading(false);
+                console.log('amountSchema Status:', data.status);
             }
-        }
-        catch (errors) {
-            setIsLoading(false)
+        } catch (errors) {
+            setIsLoading(false);
             console.log('Errors:', errors);
         }
-    }
-
+    };
+    
     const handleTransitionList = async (id) => {
         setIsLoading1(true)
         setTransactionData([])
@@ -163,9 +275,13 @@ const Page = () => {
 
     const handlePayment = async (id, amount) => {
         console.log('data received', id)
-        setIsModalVisible(true);
+        // setIsModalVisible(true);
         setPlanId(id)
         setAmount(amount)
+        router.push(`/confirm-process?${amount}`)
+    }
+    const handlemodal = () =>{
+        setisPaymentModal(true)
     }
     const handleUploadImage = async (event) => {
         event.preventDefault();
@@ -203,6 +319,8 @@ const Page = () => {
                         setPreviewImage(null)
                         setSelectedImage(null)
                         setIsModalVisible(false)
+                        setisPaymentModal(false)
+
                         // const redirectUrl = res.data.instrumentResponse.redirectInfo.url
                         // router.replace(redirectUrl)
                     }
@@ -260,7 +378,7 @@ const Page = () => {
     };
 
     return (
-        <div className='!overflow-x-hidden '>
+        <div className='!overflow-x-hidden'>
             <Navbar />
             <div className=' mt-[80px] text-[--black_text]  bg-gray-50 !overflow-x-hidden '>
                 <div className=" bg-[#272727] py-4">
@@ -307,13 +425,76 @@ const Page = () => {
                         <div className="text-red-500 text-sm">{amountFormik.errors.amount}</div>
                     ) : null}
                 </Modal>
-                <Modal
+                {/* <Modal
                     title={null}
                     centered
                     open={isModalVisible}
                     closable={false}
                     footer={[
                         <button key="back" onClick={() => {
+                            setIsModalVisible(false)
+                            setAmount()
+                            setPlanId('')
+                            setPreviewImage(null)
+                            setSelectedImage(null)
+                            if (fileInputRef.current) {
+                                fileInputRef.current.value = '';
+                            }
+                        }} className='border mr-4 rounded-md bg-white px-4 py-2' >
+                            Cancel
+                        </button>,
+                        <button key="submit" type="primary" className='bg-[--secondary] rounded-md px-4 py-2 text-white font-medium'
+                            onClick={handlemodal}
+                        >
+                            {
+                                isImageLoading && <CircularProgress size="14px" sx={{ color: "white", marginRight: "4px" }} />}
+                            Process
+                        </button>,
+                    ]}
+                >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', }} className='border-b pb-2'>
+                        <div style={{ color: '#000000d9', fontSize: '21px', fontWeight: 'bold' }}>Checkout - Confirm To Process</div>
+                        <CloseOutlined style={{ fontSize: '16px', cursor: 'pointer' }} className='hover:text-[--black] text-[--gray]' onClick={handleCancel} />
+                    </div>
+                    <div style={{ display: 'flex', }} className='justify-between'>
+                       
+                        <div >
+                            <h3 className='text-black  font-semibold text-lg my-4'>Amount:&nbsp;{amount}</h3>
+                            <p className='text-[--gray] mb-2 font-medium'></p>
+                            <p className='text-[--gray] mb-2 font-medium'>IFSC Code: ICIC0004371</p>
+                        </div>
+                        <div>
+                            <h3 className='text-black  font-semibold text-lg my-4'>UPI & QR Code</h3>
+                            <QRCodeSVG value="upi://pay?pa=your_upi_id@upi" size={150} className='text-[--gray] mb-2 font-medium' />
+                            <p className='text-[--gray] mb-2 font-medium'>UPI ID: eeveelifestylellp.ibz@icici</p>
+                        </div>
+                    </div>
+                    <div style={{ marginTop: '20px' }}>
+                        <p className='mb-4'><strong>Note:</strong> Please Share you successfull payment screenshot to +91 82386 64001 & It will take a minimum of 1 day to receive your invoice after successful payment.</p>
+                        <div className='flex  items-center gap-4 m-2 ml-0'>
+                            <div className='cursor-pointer border border-dashed rounded-xl border-[--gray] w-full flex justify-center items-center h-20 gap-2' onClick={handleDivClick}>
+                                <AddPhotoAlternateIcon /><span className='text-[--black] font-medium text-lg'> Add Image</span>
+                            </div>
+                            <input type="file" accept="image/*" onChange={handleImageChange} ref={fileInputRef}
+                                style={{ display: 'none' }} />
+                            {previewImage && (
+                                <div>
+                                    <p>Image Preview:</p>
+                                    <img src={previewImage} alt="Preview" width="200px" />
+                                </div>
+                            )}
+                        </div>
+
+                    </div>
+                </Modal> */}
+                <Modal
+                    title={null}
+                    centered
+                    open={isPaymentModal}
+                    closable={false}
+                    footer={[
+                        <button key="back" onClick={() => {
+                            setisPaymentModal(false)
                             setIsModalVisible(false)
                             setAmount()
                             setPlanId('')
