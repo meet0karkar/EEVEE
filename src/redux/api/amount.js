@@ -24,7 +24,7 @@ export const addAmount = async (data) => {
 
   export const createPaymentApi = async (data) => {
     try {
-      const response = await api.post('/user/transaction',data);
+      const response = await api.post('/user/payment',data);
       return response.data;
     } catch (error) {
       const errorMessage = error.response?.data?.message;
