@@ -208,6 +208,7 @@ const Page = () => {
                     { header: "Amount", accessor: "amount", align: "left", sortable: true },
                     { header: "Start Date", accessor: "startDate", align: "center" },
                     { header: "Actions", accessor: "action", align: "center" },  // Actions column
+                   { header: "", accessor: "", align: "center" },
                 ];
     
                 // Mapping rows to include only amount, startDate, and id (for actions)
@@ -239,6 +240,7 @@ const Page = () => {
                 setTableData({ column, row });
                 setModalOpen(false);
                 setIsLoading(false);
+               setTotalInvest(data.totalInvest)
                 console.log('amountSchema Status:', data.status);
             }
         } catch (errors) {
@@ -273,12 +275,30 @@ const Page = () => {
         setModalOpen(true)
     }
 
-    const handlePayment = async (id, amount) => {
-        console.log('data received', id)
-        // setIsModalVisible(true);
-        setPlanId(id)
-        setAmount(amount)
-        router.push(`/confirm-process?${amount}`)
+    // const handlePayment = async (id, amount) => {
+    //     console.log('data received', id)
+    //     // setIsModalVisible(true);
+    //     setPlanId(id)
+    //     setAmount(amount)
+    //     router.push(`/confirm-process?${amount}`)
+    // }
+     const handlePayment = async (id, amount) => {
+        try {
+            const payload = {
+                name: loginState.data.user.fullName,
+                amount: amount,
+                phone: String(loginState.data.user.phoneNumber),
+                planId: id
+            }
+            const res = await createPaymentApi(payload)
+            if (res.success) {
+                const redirectUrl = res.data.instrumentResponse.redirectInfo.url
+                router.replace(redirectUrl)
+            }
+        }
+        catch (err) {
+            console.log(err)
+        }
     }
     const handlemodal = () =>{
         setisPaymentModal(true)
