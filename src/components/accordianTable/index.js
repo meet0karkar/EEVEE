@@ -28,7 +28,6 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
         { header: "Transaction Id", accessor: "transactionId", align: "center" },
         { header: "Date", accessor: "date", align: "center" },
         { header: "Status", accessor: "status", align: "center" },
-        // { header: "Verified", accessor: "verified", align: "center" },
     ]
 
     return (
@@ -121,7 +120,6 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
                                                         <TableCell align="center" sx={{ width: '20%' }} className='w-full whitespace-nowrap' >{item.transactionId ?? '-'}</TableCell>
                                                         <TableCell align="center" sx={{ width: '15%' }} className='w-full whitespace-nowrap' >{new Date(item?.transactionDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</TableCell>
                                                         <TableCell align="center" sx={{ width: '10%' }} className='w-full whitespace-nowrap' >{item.status ?? 'Done'}</TableCell>
-                                                        // <TableCell align="center" sx={{ width: '10%' }} className='w-full whitespace-nowrap' >{item.isVerified ? "True" : "False"}</TableCell>
                                                     </TableRow>
                                                 </TableBody>
                                             )
