@@ -19,7 +19,7 @@ import Image from 'next/image';
 import DownloadIcon from '@mui/icons-material/Download';
 
 const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transactionData, downloadInvoice, isInvoiceLoading, invoiceId }) => {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(null);
 
     const column = [
         { header: "Transaction", accessor: "transaction", align: "left", },
@@ -30,6 +30,10 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
         { header: "Status", accessor: "status", align: "center" },
     ]
 
+      const toggleRow = (rowId) => {
+        setOpenRowId(openRowId === rowId ? null : rowId);
+    };
+    
     return (
         <>
             <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -70,10 +74,10 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
                         size="small"
                         onClick={() => {
                             handleTransitionList(row.id)
-                            setOpen(!open)
+                           toggleRow(row.id)
                         }}
                     >
-                        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                        {openRowId === row.id ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
                 </TableCell>
                 {/* <TableCell align="center"><button
@@ -88,7 +92,7 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
             </TableRow>
             <TableRow >
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12} >
-                    <Collapse in={open} timeout="auto" style={{ width: "100%" }} colSpan={12}>
+                    <Collapse in={openRowId === row.id} timeout="auto" style={{ width: "100%" }} colSpan={12}>
                         <Box sx={{ margin: 2 }}>
                             <div className="h-[90%] w-[100%]  px-2 md:px-4 lg:px-10 space-y-6 !mt-6">
                                 <div className=" border-2  px-3 py-4 rounded-lg">
