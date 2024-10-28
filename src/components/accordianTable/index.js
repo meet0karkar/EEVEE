@@ -19,7 +19,7 @@ import Image from 'next/image';
 import DownloadIcon from '@mui/icons-material/Download';
 
 const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transactionData, downloadInvoice, isInvoiceLoading, invoiceId }) => {
-    const [open, setOpen] = useState(null);
+    const [openRowId, setOpenRowId] = useState(null);
 
     const column = [
         { header: "Transaction", accessor: "transaction", align: "left", },
