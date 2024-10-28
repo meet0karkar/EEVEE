@@ -19,8 +19,7 @@ import Image from 'next/image';
 import DownloadIcon from '@mui/icons-material/Download';
 
 const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transactionData, downloadInvoice, isInvoiceLoading, invoiceId }) => {
-    const [openRowId, setOpenRowId] = useState(null);
-
+  
     const column = [
         { header: "Transaction", accessor: "transaction", align: "left", },
         { header: "Amount", accessor: "amount", align: "center" },
@@ -30,10 +29,17 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
         { header: "Status", accessor: "status", align: "center" },
     ]
 
-      const toggleRow = (rowId) => {
-        setOpenRowId(openRowId === rowId ? null : rowId);
+  const [open, setOpen] = useState({ id: null, isOpen: false });
+
+     const handleToggleCollapse = (id) => {
+        if (open.id === id && open.isOpen) {
+            setOpen({ id: null, isOpen: false });
+        } else {
+            handleTransitionList(id);
+            setOpen({ id, isOpen: true });
+        }
     };
-    
+
     return (
         <>
             <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -69,30 +75,19 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
                 </TableCell>
 
                 <TableCell align="center " className='w-5' >
-                    <IconButton
+                   <IconButton
                         aria-label="expand row"
                         size="small"
-                        onClick={() => {
-                            handleTransitionList(row.id)
-                           toggleRow(row.id)
-                        }}
+                        onClick={() => handleToggleCollapse(row.id)}
                     >
-                        {openRowId === row.id ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                        {open.id === row.id && open.isOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
                 </TableCell>
-                {/* <TableCell align="center"><button
-                    className={`border-2 py-1 p-2 rounded-lg w-[95%] 
-                            ${row?.bookingStatus === "pending" && "border-[#E4A11B] text-[#E4A11B]"} 
-                            ${row?.bookingStatus === "approved" && "border-[#14A44D] text-[#14A44D]"} 
-                            ${row?.bookingStatus === "canceled" && "border-[#d32f2f] text-[#d32f2f]"}
-                            ${(row?.bookingStatus === "active" || row?.bookingStatus === "completed") && "border-[#14A44D] bg-[#14A44D] text-[--white-color]"}`} >
-                    {row?.bookingStatus.toUpperCase()}
-                </button ></TableCell> */}
-
             </TableRow>
+            {open.id === row.id && open.isOpen && (
             <TableRow >
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12} >
-                    <Collapse in={openRowId === row.id} timeout="auto" style={{ width: "100%" }} colSpan={12}>
+                    <Collapse in={open.isOpen} timeout="auto" style={{ width: "100%" }} colSpan={12}>
                         <Box sx={{ margin: 2 }}>
                             <div className="h-[90%] w-[100%]  px-2 md:px-4 lg:px-10 space-y-6 !mt-6">
                                 <div className=" border-2  px-3 py-4 rounded-lg">
@@ -135,7 +130,7 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
                         </Box>
                     </Collapse>
                 </TableCell>
-            </TableRow>
+            </TableRow> )}
         </>
     );
 }
