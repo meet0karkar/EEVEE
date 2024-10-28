@@ -285,9 +285,9 @@ const Page = () => {
      const handlePayment = async (id, amount) => {
         try {
             const payload = {
-                name: loginState.data.user.fullName,
+                name: loginState?.data?.user?.fullName,
                 amount: amount,
-                phone: String(loginState.data.user.phoneNumber),
+                phone: String(loginState?.data?.user?.phoneNumber),
                 planId: id
             }
             const res = await createPaymentApi(payload)
