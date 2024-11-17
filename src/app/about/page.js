@@ -16,7 +16,6 @@ export default function AboutUs() {
   return (
     <div>
       <Navbar />
-
       <div className="bg-[--black]">
         <div className=" flex flex-col space-y-14  w-[90%]  mx-auto">
           <div className="lg:h-screen  lg:pt-10 pt-20 flex flex-col gap-4 lg:gap-0 lg:flex-row  justify-between items-center">
@@ -49,7 +48,6 @@ export default function AboutUs() {
                   exceptional value.
                 </p>
               </Fade>
-
               <Fade direction="down" triggerOnce cascade delay={500}>
                 <Link href="https://eevee.in/pages/our-store" target="_blank">
                   <button className="mt-10 hover:bg-[--secondary] hover:text-[--white] bg-[--white] rounded-full px-8 py-2 font-medium text-[--black] transition-all ease-in-out duration-500">
