@@ -12,7 +12,7 @@ const Page = () => {
           <p className="font-semibold mt-6 mb-4">
             eeveegoldsavings.com is managed by EEVEE LIFESTYLE LLP
           </p>
-          {/* <p className="leading-relaxed">
+          <p className="leading-relaxed">
             If you stop this plan, that is totally okay; however, you can discontinue this plan only after 16 months, in which case we will return only the gold equivalent of your deposited money. We cannot offer extra benefits if you discontinue this plan before completing 16 months.
           </p>
           <br />
@@ -40,7 +40,7 @@ const Page = () => {
           <p className="leading-relaxed mt-4">
             In case of any refun
             ds approved by LALIMA JEWELS LLP, it will take 7 days for the refund to be processed.
-          </p> */}
+          </p>
            <p className="leading-relaxed">
            You can discontinue your plan at any time; however, if you do so before completing the full duration of your commitment, we will return only the gold equivalent of your deposited money.Extra benefits cannot be offered if you discontinue your plan early.
           </p>

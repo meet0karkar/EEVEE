@@ -49,12 +49,12 @@ const Row = ({ row, handlePayment, handleTransitionList, isLoading1, transaction
                     minimumFractionDigits: 2,
                 }).format(row.amount)}</TableCell>
                 <TableCell align="center">{row.startDate}</TableCell>
-                {/* <TableCell align="center">{row.endDate}</TableCell> */}
-                {/* <TableCell align="center">{new Intl.NumberFormat("en-IN", {
+                <TableCell align="center">{row.endDate}</TableCell>
+                <TableCell align="center">{new Intl.NumberFormat("en-IN", {
                     style: "currency",
                     currency: "INR",
                     minimumFractionDigits: 2,
-                }).format(row.totalAmountPayable)}</TableCell> */}
+                }).format(row.totalAmountPayable)}</TableCell>
                 <TableCell align="center">
                     <div className='flex justify-center gap-2 items-center'>
                         <button className='px-4 py-1 rounded-md border border-dashed border-[--secondary] tracking-wide  font-medium ' onClick={() => {

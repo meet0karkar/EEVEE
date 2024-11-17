@@ -103,7 +103,7 @@ export const Features_About = [
         details: "Offers a free 17th month for loyal users."
     },
     {
-        title: "MGold Platform",
+        title: "MGold Investment Platform",
         details: "50k+ active members, 99% happy customers, and over 1 million in managed assets."
     },
     {

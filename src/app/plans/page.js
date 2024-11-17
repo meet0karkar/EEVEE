@@ -204,19 +204,32 @@ const Page = () => {
     
             if (data.status) {
                 // Defining only the columns we want to display: Amount, Start Date, and Actions
+                // const column = [
+                //     { header: "Amount", accessor: "amount", align: "left", sortable: true },
+                //     { header: "Start Date", accessor: "startDate", align: "center" },
+                //     { header: "Actions", accessor: "action", align: "center" },  // Actions column
+                //    { header: "", accessor: "", align: "center" },
+                // ];
                 const column = [
-                    { header: "Amount", accessor: "amount", align: "left", sortable: true },
-                    { header: "Start Date", accessor: "startDate", align: "center" },
-                    { header: "Actions", accessor: "action", align: "center" },  // Actions column
-                   { header: "", accessor: "", align: "center" },
-                ];
+                                    { header: "Amount", accessor: "amount", align: "left", sortable: true },
+                                    { header: "Start Date", accessor: "startDate", align: "center" },
+                                    { header: "End Date", accessor: "endDate", align: "center" },
+                                    { header: "Total Payable Amount", accessor: "totalAmountPayable", align: "center", sortable: true },
+                                    { header: "Actions", accessor: "action", align: "center" },
+                                    { header: "", accessor: "", align: "center" },
+                                ]
     
                 // Mapping rows to include only amount, startDate, and id (for actions)
                 const row = data.data?.map((val) => {
                     return {
+                        // id: val?._id,
+                        // amount: val?.amount,  // Ensure amount field exists
+                        // startDate: val?.startDate || "-", // Default to "-" if startDate is missing
                         id: val?._id,
-                        amount: val?.amount,  // Ensure amount field exists
-                        startDate: val?.startDate || "-", // Default to "-" if startDate is missing
+                        startDate: val?.startDate || "-",
+                        endDate: val?.endDate,
+                        totalAmountPayable: val?.totalAmountPayable,
+                        amount: val?.amount,
                         action: (
                             <div>
                                 {/* <button 
@@ -403,7 +416,7 @@ const Page = () => {
             <div className=' mt-[80px] text-[--black_text]  bg-gray-50 !overflow-x-hidden '>
                 <div className=" bg-[#272727] py-4">
                     <div className='w-[90%] mx-auto flex justify-between items-center'>
-                        <p className='md:text-xl text-lg font-medium md:font-semibold text-[--white] '>Your Total :  {new Intl.NumberFormat("en-IN", {
+                        <p className='md:text-xl text-lg font-medium md:font-semibold text-[--white] '>Your Total Investment :  {new Intl.NumberFormat("en-IN", {
                             style: "currency",
                             currency: "INR",
                             minimumFractionDigits: 2,

@@ -57,10 +57,10 @@ const Page = () => {
             We use the Personal Information and other non-Personal Information, for the following:
         </p>
         <ul className='list-disc pl-6 space-y-2 leading-relaxed'>
-             <li>To provide and improve the services on the platform that you request.</li>
-            <li>To resolve disputes and troubleshoot problems.</li>
-            <li>To help promote a safe service on the platform and protect the security and integrity of the platform, the services, and the users.</li>
-            <li>To collect money from you in relation to the services.</li>
+        <li>To provide and improve the Services on the Platform that You request;</li>
+            <li>To resolve disputes and troubleshoot problems;</li>
+            <li>To help promote a safe service on the Platform and protect the security and integrity of the Platform, the Services and the users;</li>
+            <li>Collect money from You in relation to the Services;</li>
             <li>Inform You about online and offline offers, products, services, and updates;</li>
             <li>Customize Your experience on the Platform or share marketing material with You;</li>
             <li>To detect, prevent and protect Us from any errors, fraud and other criminal or prohibited activity on the Platform;</li>
