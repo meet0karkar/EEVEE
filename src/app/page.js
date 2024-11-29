@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import Footer from '../components/footer';
 import Navbar from '../components/navbar';
 import { Fade } from 'react-awesome-reveal';
-import { AccountSteps, Features, OurClint } from '@/utils/routes';
+import { AccountSteps, Features, OurClint } from '../utils/routes';
 import Link from 'next/link';
 
 

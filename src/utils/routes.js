@@ -27,7 +27,7 @@ export const Routes = [
 
 // export const Features = [
 //     {
-//         title: "Initial Gold Purchase",
+//         title: "Initial Gold Purchase",  
 //         details: "Make your first digital gold purchase to kickstart your journey."
 //     },
 //     {

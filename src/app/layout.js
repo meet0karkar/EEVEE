@@ -1,5 +1,5 @@
 
-import ConditionalNavbar from "@/components/conditionalNavbar";
+import ConditionalNavbar from "../components/conditionalNavbar";
 import localFont from "next/font/local";
 import ClientProvider from "./clientProvider";
 import "./globals.css";
